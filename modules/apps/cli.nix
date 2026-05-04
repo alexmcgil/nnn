@@ -2,6 +2,9 @@
 
 {
   environment.systemPackages = with pkgs; [
+    # Терминал
+    kitty
+
     # Замена стандартных утилит
     bat            # cat с подсветкой синтаксиса
     eza            # ls с иконками и деревом
