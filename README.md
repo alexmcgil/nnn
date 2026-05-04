@@ -100,18 +100,20 @@ nix-shell -p git
 git clone <URL_ЭТОГО_РЕПОЗИТОРИЯ> /tmp/nixos
 ```
 
-### 5. Сгенерировать хэш пароля (ОБЯЗАТЕЛЬНО)
+### 5. Создать файл с хэшем пароля (ОБЯЗАТЕЛЬНО)
+
+Хэш хранится вне репозитория — репо публичный, хэш в git не кладём.
 
 ```bash
-nix-shell -p mkpasswd --run 'mkpasswd -m sha-512'
-```
-
-Скопировать вывод и вставить в `users/alexmcgil.nix`:
-```nix
-hashedPassword = "$6$...вставить_сюда...";
+mkdir -p /mnt/etc/nixos/secrets
+nix-shell -p mkpasswd --run 'mkpasswd -m sha-512' > /mnt/etc/nixos/secrets/alexmcgil.hash
+chmod 600 /mnt/etc/nixos/secrets/alexmcgil.hash
+cat /mnt/etc/nixos/secrets/alexmcgil.hash   # проверить, что файл не пустой
 ```
 
 > Используй тот же пароль, что был на CachyOS — это позволит сохранить доступ к базам KeePassXC, синхронизированным через расширения браузеров.
+
+> **Путь `/mnt/...`** — потому что disko монтирует систему в `/mnt`. После установки файл окажется в `/etc/nixos/secrets/alexmcgil.hash` на новой системе.
 
 ### 6. Проверить UID
 
