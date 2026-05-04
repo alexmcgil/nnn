@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgs-stable, inputs, ... }:
 
 # AAGL (Anime Game Launcher) требует cachix:
 # nix-shell -p cachix --run 'cachix use ezkea'
@@ -11,7 +11,7 @@
   programs.anime-game-launcher.enable = true;
 
   environment.systemPackages = with pkgs; [
-    lutris
+    pkgs-stable.lutris
     heroic             # Heroic Games Launcher (Epic/GOG/Amazon)
     prismlauncher      # Minecraft
     mangohud
