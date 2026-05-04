@@ -6,9 +6,9 @@
   programs.seahorse.enable = lib.mkForce false;
 
   # KWallet выключаем как хранилище и PAM-интеграцию
-  security.pam.services.login.enableKwallet = false;
-  security.pam.services.sddm.enableKwallet = false;
-  security.pam.services.greetd.enableKwallet = false;
+  security.pam.services.login.kwallet.enable = lib.mkForce false;
+  security.pam.services.sddm.kwallet.enable = lib.mkForce false;
+  security.pam.services.greetd.kwallet.enable = lib.mkForce false;
 
   # KeePassXC + интеграция с браузерами
   # (дополнительно может быть в modules/apps/productivity.nix, здесь как системный пакет)
