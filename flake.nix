@@ -48,11 +48,17 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, disko, niri, zen-browser, aagl, ... }@inputs:
-    let
+      let
       mkHost = { system, hostname, extraModules ? [ ] }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            pkgs-stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          };
           modules = [
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager

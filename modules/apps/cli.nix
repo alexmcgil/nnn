@@ -5,6 +5,8 @@
     # Терминал
     kitty
 
+    pkgs.starship
+
     # Замена стандартных утилит
     bat            # cat с подсветкой синтаксиса
     eza            # ls с иконками и деревом
@@ -107,5 +109,4 @@
 
   # Fish shell
   programs.fish.enable = true;
-  pkgs.starship
 }
