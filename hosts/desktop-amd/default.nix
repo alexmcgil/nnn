@@ -19,6 +19,7 @@
     ../../modules/desktop/plasma.nix
     ../../modules/desktop/niri.nix
 
+    ../../modules/apps/ai.nix
     ../../modules/apps/cli.nix
     ../../modules/apps/browsers.nix
     ../../modules/apps/messengers.nix
