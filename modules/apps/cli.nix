@@ -107,4 +107,5 @@
 
   # Fish shell
   programs.fish.enable = true;
+  pkgs.starship
 }
