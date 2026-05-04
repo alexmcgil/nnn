@@ -293,7 +293,7 @@
     enable = true;
     settings = {
       user.name = "alexmcgil";
-      user.email = "alexmcgil@example.com"; # TODO: указать реальную почту
+      user.email = "alexmcgil@vivaldi.net";
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
