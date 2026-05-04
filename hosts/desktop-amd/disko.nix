@@ -92,10 +92,10 @@
     ];
   };
 
-  # SATA SSD под медиа — ext4
-  # UUID: d6ecfcd5-2703-41bf-9301-10c403b6fb0c
+  # HDD SSD под медиа — ext4
+  # UUID: 17e03bc1-3435-4ab4-b51d-03627c426997
   fileSystems."/mnt/media" = {
-    device = "/dev/disk/by-uuid/d6ecfcd5-2703-41bf-9301-10c403b6fb0c";
+    device = "/dev/disk/by-uuid/17e03bc1-3435-4ab4-b51d-03627c426997";
     fsType = "ext4";
     options = [ "defaults" "nofail" ];
   };
