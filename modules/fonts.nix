@@ -3,7 +3,7 @@
 {
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     noto-fonts-cjk-sans
     dejavu_fonts
     liberation_ttf
@@ -20,7 +20,7 @@
     nerd-fonts.meslo-lg
     nerd-fonts.symbols-only
     material-symbols
-    wqy-zenhei
+    wqy_zenhei
     adwaita-fonts
   ];
 

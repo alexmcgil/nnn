@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     # Редакторы
     zed-editor
-    jetbrains.idea-ultimate
+    jetbrains.idea
     obsidian
 
     # Компиляторы и системы сборки

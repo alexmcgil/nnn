@@ -19,7 +19,7 @@
     protontricks
     protonup-qt        # GE-Proton установка
     winetricks
-    wineWowPackages.stagingFull
+    wineWow64Packages.stagingFull
     umu-launcher       # Unified Launcher для Proton
   ];
 }

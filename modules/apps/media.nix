@@ -8,7 +8,7 @@
     audacity
     gimp3
     krita
-    kdenlive
+    kdePackages.kdenlive
     feishin        # Navidrome/Jellyfin музыкальный клиент
     haruna         # KDE видеоплеер
     qbittorrent

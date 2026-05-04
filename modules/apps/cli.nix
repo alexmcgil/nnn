@@ -11,7 +11,7 @@
     fzf            # fuzzy finder
     zoxide         # cd с историей
     jq             # JSON
-    go-yq          # YAML/XML/TOML
+    yq-go          # YAML/XML/TOML
     sd             # sed замена
 
     # Системный мониторинг
@@ -100,6 +100,6 @@
     tree
   ];
 
-  # zsh shell (включён через users/alexmcgil.nix)
-  programs.zsh.enable = true;
+  # Fish shell
+  programs.fish.enable = true;
 }

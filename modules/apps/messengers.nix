@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    tdesktop          # Telegram
+    telegram-desktop
     discord
     teams-for-linux
     thunderbird

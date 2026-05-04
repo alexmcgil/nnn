@@ -8,7 +8,7 @@
     uid = 1000;
     group = "users";
     home = "/home/alexmcgil";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -30,7 +30,7 @@
     hashedPasswordFile = "/etc/nixos/secrets/alexmcgil.hash";
   };
 
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   security.sudo.wheelNeedsPassword = true;
 
