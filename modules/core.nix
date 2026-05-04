@@ -2,18 +2,10 @@
 
 {
   # Nix settings
+  # Cachix-кэши объявлены в flake.nix → nixConfig (noctalia + aagl)
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
-    # Cachix для AAGL (anime game launcher)
-    substituters = [
-      "https://cache.nixos.org"
-      "https://ezkea.cachix.org"
-    ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-    ];
   };
 
   # Garbage collection
@@ -67,4 +59,8 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  # Нужны Noctalia для виджетов Battery/PowerProfile
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
 }

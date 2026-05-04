@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   users.mutableUsers = false;
@@ -34,8 +34,8 @@
 
   security.sudo.wheelNeedsPassword = true;
 
-  # home-manager подключён через flake, но home.nix пользователя опишет сам
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  # home-manager.users.alexmcgil = import ../home/alexmcgil.nix;  # раскомментировать позже
+  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.users.alexmcgil = import ./alexmcgil-home.nix;
 }
