@@ -11,7 +11,10 @@
 
   # WireGuard — ядерный модуль встроен в linuxPackages_latest
   # wireguard-tools нужен для wg / wg-quick
-  environment.systemPackages = [ pkgs.wireguard-tools ];
+  environment.systemPackages = [ 
+    pkgs.wireguard-tools
+    pkgs.kdePackages.networkmanager-qt
+  ];
 
   # Разрешить wg-quick поднимать интерфейсы (нужен для wg-quick up/down)
   networking.firewall.checkReversePath = "loose";
