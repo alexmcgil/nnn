@@ -43,7 +43,6 @@
         }
       ];
       states = {
-        arch-updater       = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         assistant-panel    = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         clipper            = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         kaomoji-provider   = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
