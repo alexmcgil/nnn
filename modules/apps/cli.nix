@@ -102,9 +102,6 @@
 
     # Tree
     tree
-
-    # AI
-    pkgs.opencode
   ];
 
   # Fish shell
