@@ -4,26 +4,26 @@
   environment.systemPackages = with pkgs; [
     # Редакторы
     zed-editor
-    jetbrains.idea
+    # jetbrains.idea
     obsidian
 
     # Компиляторы и системы сборки
-    gcc
-    clang
-    cmake
-    meson
-    ninja
-    pkg-config
+    # gcc
+    # clang
+    # cmake
+    # meson
+    # ninja
+    # pkg-config
 
     # Платформы
-    nodejs_22
-    jdk21
-    gradle
-    python313
-    go
+    # nodejs_22
+    # jdk21
+    # gradle
+    # python313
+    # go
 
     # Rust — через rustup (управляет тулчейном самостоятельно)
-    rustup
+    # rustup
   ];
 
   # direnv + nix-direnv уже включены в core.nix

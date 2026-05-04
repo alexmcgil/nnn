@@ -19,7 +19,6 @@
 
     # Системный мониторинг
     btop
-    glances
     duf            # du/df
     ncdu           # ncurses du
 
