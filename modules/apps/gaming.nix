@@ -14,6 +14,10 @@
     pkgs-stable.lutris
     heroic             # Heroic Games Launcher (Epic/GOG/Amazon)
     prismlauncher      # Minecraft
+    temurin-bin-21   # для Minecraft 1.21+ нужна Java 21
+    temurin-bin-17   # для 1.17–1.20.x
+    temurin-bin-8    # для старых версий (1.16 и ниже)
+    
     mangohud
     goverlay           # GUI для MangoHud
     protontricks
