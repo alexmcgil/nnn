@@ -21,6 +21,8 @@
   # Брандмауэр
   networking.firewall = {
     enable = true;
+    allowedTCPPorts = [ 25565 ];
+    allowedUDPPorts = [ 25565 ];
     # Открываем порты при необходимости в конкретных модулях (jellyfin, sunshine и т.д.)
   };
 
