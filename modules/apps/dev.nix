@@ -15,6 +15,9 @@
     # ninja
     # pkg-config
 
+    pnpm
+    bun
+
     # Платформы
     # nodejs_22
     # jdk21
