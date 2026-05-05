@@ -8,6 +8,7 @@
   # ---- Noctalia shell ----
   imports = [
     inputs.noctalia.homeModules.default
+    ./fish.nix
   ];
 
   programs.noctalia-shell = {
