@@ -4,3 +4,5 @@ result-*
 *.img
 .direnv/
 .config/
+
+docs/superpowers/plans/
