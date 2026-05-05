@@ -576,6 +576,26 @@
     };
   };
 
+  # ---- Desktop entries overrides ----
+  home.file.".local/bin/lm-studio-launcher" = {
+    executable = true;
+    text = ''
+      #!/bin/sh
+      exec /run/current-system/sw/bin/lm-studio "$@"
+    '';
+  };
+
+  xdg.desktopEntries."lm-studio" = {
+    name = "LM Studio";
+    exec = "/home/alexmcgil/.local/bin/lm-studio-launcher";
+    terminal = false;
+    type = "Application";
+    icon = "lm-studio";
+    comment = "Use the chat UI or local server to experiment and develop with local LLMs.";
+    categories = [ "Development" ];
+    mimeType = [ "x-scheme-handler/lmstudio" ];
+  };
+
   # ---- home-manager self-management ----
   programs.home-manager.enable = true;
 }
