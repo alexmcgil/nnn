@@ -8,16 +8,10 @@
   # Включить niri через nixosModule из flake-input sodiboo/niri-flake
   programs.niri.enable = true;
 
-  # XDG Desktop Portal
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config.common.default = "*";
-  };
+  # XDG Desktop Portal настраивается автоматически niri-flake при programs.niri.enable = true:
+  # - добавляет xdg-desktop-portal-gnome (screencast) и xdg-desktop-portal-gtk
+  # - устанавливает config.niri с правильными маппингами интерфейсов
+  # Ручная конфигурация здесь конфликтовала бы с config.niri из флейка.
 
   # Системные пакеты для niri-сессии
   environment.systemPackages = with pkgs; [
@@ -29,6 +23,6 @@
   environment.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    XDG_CURRENT_DESTOP = "niri";
+    XDG_CURRENT_DESKTOP = "niri";
   };
 }
