@@ -403,6 +403,13 @@
         }
         {
           matches = [
+            { app-id = "zen$"; }
+            { app-id = "zen-beta$"; }
+          ];
+          open-maximized = true;
+        }
+        {
+          matches = [
             { app-id = "zen$"; title = "^Picture-in-Picture$"; }
           ];
           open-floating = true;
