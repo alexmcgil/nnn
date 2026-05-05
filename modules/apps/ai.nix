@@ -3,7 +3,7 @@
 {
 
   environment.systemPackages = with pkgs; [
-    pkgs.lmstudio
-    pkgs.opencode
+    lmstudio
+    opencode
   ];
 }

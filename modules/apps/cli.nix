@@ -5,7 +5,7 @@
     # Терминал
     kitty
 
-    pkgs.starship
+    starship
 
     # Замена стандартных утилит
     bat            # cat с подсветкой синтаксиса
