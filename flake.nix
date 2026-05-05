@@ -5,6 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +49,7 @@
     ];
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, disko, niri, zen-browser, aagl, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, disko, niri, zen-browser, aagl, zapret-discord-youtube, ... }@inputs:
       let
       mkHost = { system, hostname, extraModules ? [ ] }:
         nixpkgs.lib.nixosSystem {
@@ -64,6 +66,7 @@
             home-manager.nixosModules.home-manager
             niri.nixosModules.niri
             aagl.nixosModules.default
+            zapret-discord-youtube.nixosModules.default
             ./hosts/${hostname}
           ] ++ extraModules;
         };

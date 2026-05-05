@@ -39,6 +39,7 @@
     ../../modules/services/sunshine.nix
     ../../modules/services/fwupd.nix
     ../../modules/services/openrgb.nix
+    ../../modules/services/zapret.nix
 
     ../../users/alexmcgil.nix
   ];
