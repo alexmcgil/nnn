@@ -71,14 +71,14 @@
         body = "_oc_connect p";
       };
 
-      nrsa = {
-        description = "NixOS rebuild switch for amd host";
-        body = "sudo nixos-rebuild switch --flake ~/nixos#desktop-amd";
+      nrs = {
+        description = "NixOS rebuild switch";
+        body = "sudo nixos-rebuild switch --flake ~/nixos#(hostname)";
       };
 
-      nrsau = {
-        description = "NixOS rebuild switch for amd host";
-        body = "sudo nixos-rebuild switch --flake ~/nixos#desktop-amd --upgrade";
+      nrsu = {
+        description = "NixOS rebuild switch and upgrade";
+        body = "sudo nixos-rebuild switch --flake ~/nixos#(hostname) --upgrade";
       };
     };
   };
