@@ -15,6 +15,7 @@
     # ninja
     # pkg-config
 
+    fnm
     pnpm
     bun
 
