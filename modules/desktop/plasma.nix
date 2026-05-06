@@ -22,6 +22,11 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    config.plasma = {
+      default = [ "kde" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "kde" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "kde" ];
+    };
   };
 
   # X11 для совместимости (xwayland)

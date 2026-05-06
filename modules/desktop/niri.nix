@@ -8,10 +8,9 @@
   # Включить niri через nixosModule из flake-input sodiboo/niri-flake
   programs.niri.enable = true;
 
-  # XDG Desktop Portal настраивается автоматически niri-flake при programs.niri.enable = true:
-  # - добавляет xdg-desktop-portal-gnome (screencast) и xdg-desktop-portal-gtk
-  # - устанавливает config.niri с правильными маппингами интерфейсов
-  # Ручная конфигурация здесь конфликтовала бы с config.niri из флейка.
+  programs.niri.settings.environment = {
+    GBM_BACKEND = "nvidia-drm";
+  };
 
   # Системные пакеты для niri-сессии
   environment.systemPackages = with pkgs; [
@@ -34,10 +33,18 @@
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
-  # XDG Desktop Portal для niri-сессии настраивается автоматически niri-flake:
-  # - добавляет xdg-desktop-portal-gnome (screencast через GNOME/PipeWire)
-  # - configPackages = [niri] генерирует niri-portals.conf с default=gnome;gtk
-  # Ручная конфигурация config.niri здесь конфликтовала бы с niri-portals.conf из пакета.
+  xdg.portal.config = {
+    common = {
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+    };
+    niri = {
+      default = [ "gnome" "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+    };
+  };
 
   # GTK4/Vulkan + GBM_BACKEND=nvidia-drm = VK_ERROR_OUT_OF_DATE_KHR при показе диалога выбора экрана.
   # Для gnome-portal переключаем на GL рендерер и убираем NVIDIA-специфичный GBM/GLX бэкенд.
