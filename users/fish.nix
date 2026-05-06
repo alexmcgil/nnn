@@ -89,6 +89,11 @@
         description = "NixOS rebuild switch for amd host";
         body = "sudo nixos-rebuild switch --flake ~/nixos#desktop-amd";
       };
+
+      nrsau = {
+        description = "NixOS rebuild switch for amd host";
+        body = "sudo nixos-rebuild switch --flake ~/nixos#desktop-amd --upgrade";
+      };
     };
   };
 
