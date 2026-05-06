@@ -4,5 +4,6 @@ result-*
 *.img
 .direnv/
 .config/
+.idea
 
 docs/superpowers/plans/
