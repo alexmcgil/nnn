@@ -35,12 +35,6 @@
       alias won 'wg-quick up ~/Documents/bedroom.conf'
       alias woff 'wg-quick down ~/Documents/bedroom.conf'
 
-      # pnpm
-      set -x PNPM_HOME /home/alexmcgil/.local/share/pnpm
-      if not contains $PNPM_HOME $PATH
-          set -x PATH $PNPM_HOME $PATH
-      end
-
       # JetBrains vmoptions
       set ___MY_VMOPTIONS_SHELL_FILE "$HOME/.jetbrains.vmoptions.sh"
       if test -f $___MY_VMOPTIONS_SHELL_FILE
@@ -55,10 +49,6 @@
 
       # opencode
       fish_add_path /home/alexmcgil/.opencode/bin
-
-      # bun
-      set --export BUN_INSTALL "$HOME/.bun"
-      set --export PATH $BUN_INSTALL/bin $PATH
 
       # fnm
       fnm env --use-on-cd --shell fish | source
