@@ -31,15 +31,18 @@
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
-  # XDG Desktop Portal для niri-сессии
-  # xdg-desktop-portal-hyprland — screencast/screenshot для wlroots-based compositors
-  # Plasma-сессия использует xdg-desktop-portal-kde (задан в plasma.nix)
-  xdg.portal = {
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    config.niri = {
-      default = [ "hyprland" "gtk" ];
-      "org.freedesktop.impl.portal.Screencast" = [ "hyprland" ];
-      "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+  # XDG Desktop Portal для niri-сессии настраивается автоматически niri-flake:
+  # - добавляет xdg-desktop-portal-gnome (screencast через GNOME/PipeWire)
+  # - configPackages = [niri] генерирует niri-portals.conf с default=gnome;gtk
+  # Ручная конфигурация config.niri здесь конфликтовала бы с niri-portals.conf из пакета.
+
+  # GTK4/Vulkan + GBM_BACKEND=nvidia-drm = VK_ERROR_OUT_OF_DATE_KHR при показе диалога выбора экрана.
+  # Для gnome-portal переключаем на GL рендерер и убираем NVIDIA-специфичный GBM/GLX бэкенд.
+  systemd.user.services.xdg-desktop-portal-gnome = {
+    environment = {
+      GSK_RENDERER = "gl";
+      GBM_BACKEND = "";
+      __GLX_VENDOR_LIBRARY_NAME = "";
     };
   };
 }
