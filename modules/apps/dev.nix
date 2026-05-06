@@ -5,7 +5,6 @@
     # Редакторы
     zed-editor
     jetbrains.idea
-    obsidian
 
     # Компиляторы и системы сборки
     # gcc

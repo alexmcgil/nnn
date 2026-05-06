@@ -6,5 +6,6 @@
     mongodb-compass
     postman
     dbeaver-bin
+    obsidian
   ];
 }
