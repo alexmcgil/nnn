@@ -66,16 +66,15 @@
 
     functions = {
       _oc_connect = {
-        description = "Connect to VPN via openconnect using keepassxc credentials";
+        description = "Connect to VPN via openconnect using dbus credentials";
         body = ''
           set group_key $argv[1]
-          set kdbx ~/Documents/keep/Passwords.kdbx
-          set notes (keepassxc-cli show -a Notes $kdbx ipa)
+          set notes (secret-tool search --all Title ipa 2>&1 | grep Notes -A 5 | sd "attribute.Notes = " "")
           set server (echo $notes | jq -r '.server')
           set group  (echo $notes | jq -r --arg k $group_key '.[$k]')
-          set user (keepassxc-cli show -a UserName $kdbx ipa)
-          set pass (keepassxc-cli show -a Password $kdbx ipa -t)
-          set totp (keepassxc-cli show --totp $kdbx ipa)
+          set user (secret-tool search --all Title ipa 2>&1 | grep UserName | sd "attribute.UserName = " "")
+          set pass (secret-tool lookup Title ipa)
+          set totp (secret-tool search --all Title ipa 2>&1 | grep TOTP | sd "attribute.TOTP = " "")
           printf "%s\n%s\n" $pass $totp | sudo openconnect $server \
               -u $user --authgroup $group --passwd-on-stdin --no-dtls
         '';
