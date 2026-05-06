@@ -12,7 +12,10 @@
 
   # KeePassXC + интеграция с браузерами
   # (дополнительно может быть в modules/apps/productivity.nix, здесь как системный пакет)
-  environment.systemPackages = with pkgs; [ keepassxc ];
+  environment.systemPackages = with pkgs; [ 
+    keepassxc
+    libsecret
+  ];
 
   # Polkit
   security.polkit.enable = true;
