@@ -95,6 +95,11 @@
         description = "Connect to VPN (P)";
         body = "_oc_connect p";
       };
+
+      nrsa = {
+        description = "NixOS rebuild switch for amd host";
+        body = "sudo nixos-rebuild switch --flake ~/nixos#desktop-amd";
+      };
     };
   };
 
