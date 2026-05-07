@@ -8,10 +8,6 @@
   # Включить niri через nixosModule из flake-input sodiboo/niri-flake
   programs.niri.enable = true;
 
-  programs.niri.settings.environment = {
-    GBM_BACKEND = "nvidia-drm";
-  };
-
   # Системные пакеты для niri-сессии
   environment.systemPackages = with pkgs; [
     xwayland-satellite
@@ -51,7 +47,6 @@
   systemd.user.services.xdg-desktop-portal-gnome = {
     environment = {
       GSK_RENDERER = "gl";
-      GBM_BACKEND = "";
       __GLX_VENDOR_LIBRARY_NAME = "";
     };
   };
