@@ -34,4 +34,13 @@
 
   # NVIDIA Container Toolkit (для Docker с GPU-поддержкой)
   hardware.nvidia-container-toolkit.enable = true;
+
+  # nvidia-container-runtime не находит runc в PATH при запуске из Docker daemon
+  # Указываем полный путь явно через конфиг
+  environment.etc."nvidia-container-runtime/config.toml".text = ''
+    [nvidia-container-runtime]
+    log-level = "info"
+    mode = "auto"
+    runtimes = ["${pkgs.runc}/bin/runc"]
+  '';
 }

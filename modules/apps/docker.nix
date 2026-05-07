@@ -11,7 +11,7 @@
       };
       runtimes = {
         nvidia = {
-          path = "${pkgs.nvidia-container-toolkit}/bin/nvidia-container-runtime";
+          path = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime";
           runtimeArgs = [];
         };
       };
