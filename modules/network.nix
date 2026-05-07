@@ -4,15 +4,16 @@
   networking.networkmanager = {
     enable = true;
     plugins = with pkgs; [
-      networkmanager-openvpn
       networkmanager-openconnect
     ];
   };
 
   # WireGuard — ядерный модуль встроен в linuxPackages_latest
   # wireguard-tools нужен для wg / wg-quick
-  environment.systemPackages = [ 
-    pkgs.wireguard-tools
+  environment.systemPackages = with pkgs; [ 
+    amnezia-vpn
+    amneziawg-tools
+    wireguard-tools
   ];
 
   # Разрешить wg-quick поднимать интерфейсы (нужен для wg-quick up/down)
