@@ -22,5 +22,6 @@
   environment.systemPackages = with pkgs; [
     docker-compose
     lazydocker
+    libnvidia-container
   ];
 }
