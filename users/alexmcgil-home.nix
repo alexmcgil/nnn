@@ -5,6 +5,15 @@
   home.homeDirectory = "/home/alexmcgil";
   home.stateVersion = "25.11";
 
+  xdg.enable = true;
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory"           = "org.kde.dolphin.desktop";
+        "application/x-gnome-saved-search" = "org.kde.dolphin.desktop";
+      };
+    };
+
   # ---- Noctalia shell ----
   imports = [
     inputs.noctalia.homeModules.default
