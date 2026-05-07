@@ -4,16 +4,86 @@
   home.username = "alexmcgil";
   home.homeDirectory = "/home/alexmcgil";
   home.stateVersion = "25.11";
-
-  xdg.enable = true;
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "inode/directory"           = "org.kde.dolphin.desktop";
-        "application/x-gnome-saved-search" = "org.kde.dolphin.desktop";
-      };
+  
+  xdg.mimeApps = {
+    enable = true;
+  
+    # Default Applications — что открывает что по умолчанию
+    defaultApplications = {
+      # Файловый менеджер
+      "inode/directory"                  = "org.kde.dolphin.desktop";
+      "application/x-gnome-saved-search" = "org.kde.dolphin.desktop";
+  
+      # Браузер (Zen Beta)
+      "text/html"                        = "zen-beta.desktop";
+      "application/xhtml+xml"            = "zen-beta.desktop";
+      "application/x-extension-htm"      = "zen-beta.desktop";
+      "application/x-extension-html"     = "zen-beta.desktop";
+      "application/x-extension-shtml"    = "zen-beta.desktop";
+      "application/x-extension-xht"     = "zen-beta.desktop";
+      "application/x-extension-xhtml"    = "zen-beta.desktop";
+      "x-scheme-handler/http"            = "zen-beta.desktop";
+      "x-scheme-handler/https"           = "zen-beta.desktop";
+      "x-scheme-handler/chrome"          = "zen-beta.desktop";
+  
+      # PDF
+      "application/pdf"                  = "zen.desktop";
+  
+      # Архивы
+      "application/zip"                  = "org.kde.ark.desktop";
+      "application/x-xz-compressed-tar"  = "org.kde.ark.desktop";
+  
+      # Thunderbird (почта, календарь, RSS)
+      "x-scheme-handler/mailto"          = "org.mozilla.Thunderbird.desktop";
+      "message/rfc822"                   = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/mid"             = "org.mozilla.Thunderbird.desktop";
+      "text/calendar"                    = "org.mozilla.Thunderbird.desktop";
+      "application/x-extension-ics"      = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/webcal"          = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/webcals"         = "org.mozilla.Thunderbird.desktop";
+      "application/rss+xml"              = "org.mozilla.Thunderbird.desktop";
+      "application/x-extension-rss"      = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/feed"            = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/news"            = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/nntp"            = "org.mozilla.Thunderbird.desktop";
+      "x-scheme-handler/snews"           = "org.mozilla.Thunderbird.desktop";
+  
+      # Telegram / AyuGram
+      "x-scheme-handler/tg"              = "org.telegram.desktop.desktop";
+      "x-scheme-handler/tonsite"         = "org.telegram.desktop.desktop";
+  
+      # Разработка / прочее
+      "x-scheme-handler/jetbrains"       = "jetbrainsd.desktop";
+      "x-scheme-handler/postman"         = "Postman.desktop";
+      "x-scheme-handler/mongodb"         = "MongoDB Compass.desktop";
+      "x-scheme-handler/mongodb+srv"     = "MongoDB Compass.desktop";
+      "x-scheme-handler/claude-cli"      = "claude-code-url-handler.desktop";
+      "x-scheme-handler/ftb"             = "FTB Electron App.desktop";
+  
+      # Wine / PortProton
+      "application/x-ms-dos-executable"  = "PortProton.desktop";
+      "application/x-msi"                = "PortProton.desktop";
+      "application/x-msdos-program"     = "PortProton.desktop";
+      "application/x-wine-extension-msp" = "PortProton.desktop";
+      "text/win-bat"                     = "PortProton.desktop";
     };
+  
+    # Added Associations — дополнительные приложения, которыми можно открыть файл
+    associations.added = {
+      "text/html"                        = [ "zen-beta.desktop" "zen.desktop" ];
+      "application/xhtml+xml"            = [ "zen-beta.desktop" "zen.desktop" ];
+      "x-scheme-handler/http"            = [ "zen-beta.desktop" "zen.desktop" ];
+      "x-scheme-handler/https"           = [ "zen-beta.desktop" "zen.desktop" ];
+      "application/zip"                  = [ "org.kde.ark.desktop" ];
+      "x-scheme-handler/tg"              = [ "org.telegram.desktop.desktop" ];
+      "x-scheme-handler/tonsite"         = [ "org.telegram.desktop.desktop" ];
+      "x-scheme-handler/mailto"          = [ "org.mozilla.Thunderbird.desktop" ];
+    };
+  };
 
+
+  xdg.configFile."mimeapps.list".force = true;
+  
   # ---- Noctalia shell ----
   imports = [
     inputs.noctalia.homeModules.default
