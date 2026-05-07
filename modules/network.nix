@@ -16,6 +16,18 @@
     wireguard-tools
   ];
 
+  systemd.services.amneziavpn = {
+    description = "AmneziaVPN Background Service";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+      Restart = "on-failure";
+      RestartSec = "1s";
+    };
+  };
+
   # Разрешить wg-quick поднимать интерфейсы (нужен для wg-quick up/down)
   networking.firewall.checkReversePath = "loose";
 
