@@ -13,6 +13,7 @@
     libxkbcommon
     fontconfig
     freetype
+    config.boot.kernelPackages.nvidia_x11
   ];
   
   environment.systemPackages = with pkgs; [
@@ -33,6 +34,7 @@
     bun
 
     # Платформы
+    uv
     # nodejs_22
     # jdk21
     # gradle
