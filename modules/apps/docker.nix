@@ -9,6 +9,13 @@
       features = {
         cdi = true; # Container Device Interface — нужно для NVIDIA через CDI
       };
+      runtimes = {
+        nvidia = {
+          path = "${pkgs.nvidia-container-toolkit}/bin/nvidia-container-runtime";
+          runtimeArgs = [];
+        };
+      };
+      default-runtime = "nvidia";
     };
   };
 
