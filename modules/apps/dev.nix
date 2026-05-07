@@ -1,6 +1,20 @@
 { config, lib, pkgs, ... }:
 
 {
+  programs.nix-ld.enable = true;
+
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+    curl
+    # на всякий случай частые зависимости:
+    glib
+    libxkbcommon
+    fontconfig
+    freetype
+  ];
+  
   environment.systemPackages = with pkgs; [
     # Редакторы
     zed-editor
