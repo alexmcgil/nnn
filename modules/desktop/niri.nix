@@ -36,7 +36,10 @@
       "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
     };
     niri = {
-      default = [ "gnome" "gtk" ];
+      # gtk первым — он умеет FileChooser сам, без GNOME Shell
+      # gnome первым вызывало: "Delegated FileChooser call failed: The name is not activatable"
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
       "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
     };
