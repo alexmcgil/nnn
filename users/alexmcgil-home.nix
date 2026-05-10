@@ -502,6 +502,14 @@
         }
         {
           matches = [
+            { app-id = "LM-Studio$"; }
+          ];
+          open-maximized = true;
+          open-on-workspace = "1";
+          open-focused = false;
+        }
+        {
+          matches = [
             { app-id = "dev.zed.Zed$"; }
           ];
           open-on-workspace = "2";
@@ -519,6 +527,28 @@
             { app-id = "org.telegram.desktop$"; }
           ];
           open-on-workspace = "3";
+          open-focused = false;
+        }
+        {
+          matches = [
+            { app-id = "steam$"; }
+          ];
+          open-on-workspace = "4";
+          open-focused = false;
+        }
+        {
+          matches = [
+            { app-id = "moe.launcher.an-anime-game-launcher$"; }
+          ];
+          open-on-workspace = "4";
+          open-focused = false;
+        }
+        {
+          matches = [
+            { app-id = "org.prismlauncher.PrismLauncher$"; }
+            { app-id = "Minecraft"; }
+          ];
+          open-on-workspace = "4";
           open-focused = false;
         }
         {
