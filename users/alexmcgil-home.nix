@@ -531,6 +531,8 @@
         {
           matches = [
             { app-id = "org.telegram.desktop$"; }
+            { app-id = "electron$"; }
+            { app-id = "discord$"; }
           ];
           open-on-workspace = "3";
           open-focused = false;
