@@ -552,10 +552,18 @@
         {
           matches = [
             { app-id = "org.prismlauncher.PrismLauncher$"; }
-            { app-id = "Minecraft"; }
           ];
           open-on-workspace = "4";
           open-focused = false;
+        }
+        
+        {
+          matches = [
+            { app-id = "Minecraft"; }
+          ];
+          open-on-workspace = "4";
+          open-maximized = true;
+          open-focused = true;
         }
         {
           matches = [
