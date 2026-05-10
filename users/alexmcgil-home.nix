@@ -553,6 +553,13 @@
         }
         {
           matches = [
+            { app-id = "feishin$"; }
+          ];
+          open-on-workspace = "5";
+          open-focused = false;
+        }
+        {
+          matches = [
             { app-id = "zen$"; title = "^Picture-in-Picture$"; }
           ];
           open-floating = true;
