@@ -495,6 +495,7 @@
           matches = [
             { app-id = "zen$"; }
             { app-id = "zen-beta$"; }
+            { app-id = "chromium-browser$"; }
           ];
           open-maximized = true;
           open-on-workspace = "1";
