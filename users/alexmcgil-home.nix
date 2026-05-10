@@ -476,6 +476,16 @@
 
       animations = {};
 
+      workspaces = {
+        "1" = { };
+        "2" = { };
+        "3" = { };
+        "4" = { };
+        "5" = { };
+        "6" = { };
+        "7" = { };
+      };
+
       window-rules = [
         {
           matches = [ { app-id = "^org\\.wezfurlong\\.wezterm$"; } ];
@@ -487,6 +497,29 @@
             { app-id = "zen-beta$"; }
           ];
           open-maximized = true;
+          open-on-workspace = "1";
+          open-focused = false;
+        }
+        {
+          matches = [
+            { app-id = "dev.zed.Zed$"; }
+          ];
+          open-on-workspace = "2";
+          open-focused = false;
+        }
+        {
+          matches = [
+            { app-id = "obsidian$"; }
+          ];
+          open-on-workspace = "2";
+          open-focused = true;
+        }
+        {
+          matches = [
+            { app-id = "org.telegram.desktop$"; }
+          ];
+          open-on-workspace = "3";
+          open-focused = false;
         }
         {
           matches = [
