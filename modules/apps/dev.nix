@@ -17,6 +17,9 @@
   ];
   
   environment.systemPackages = with pkgs; [
+    # Prisma engines (для работы без скачивания бинарников)
+    prisma-engines
+
     # Редакторы
     zed-editor
     jetbrains.idea
@@ -44,6 +47,11 @@
     # Rust — через rustup (управляет тулчейном самостоятельно)
     # rustup
   ];
+
+  environment.sessionVariables = {
+    # Prisma на NixOS: указываем системный schema-engine вместо скачивания
+    PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
+  };
 
   # direnv + nix-direnv уже включены в core.nix
   # programs.direnv и programs.direnv.nix-direnv — в core.nix
