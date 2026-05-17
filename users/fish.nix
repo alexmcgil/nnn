@@ -5,21 +5,20 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = ''
-      # No greeting
-      set fish_greeting
+    shellAliases = {
+      clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
+      celar = "printf '\\033[2J\\033[3J\\033[1;1H'";
+      claer = "printf '\\033[2J\\033[3J\\033[1;1H'";
+      won   = "wg-quick up ~/Documents/bedroom.conf";
+      woff  = "wg-quick down ~/Documents/bedroom.conf";
+    };
 
-      # Aliases
-      alias clear "printf '\033[2J\033[3J\033[1;1H'"
-      alias celar "printf '\033[2J\033[3J\033[1;1H'"
-      alias claer "printf '\033[2J\033[3J\033[1;1H'"
+    interactiveShellInit = ''
+      set fish_greeting
 
       if test "$TERM" != "linux"
           alias ls 'eza --icons'
       end
-
-      alias won 'wg-quick up ~/Documents/bedroom.conf'
-      alias woff 'wg-quick down ~/Documents/bedroom.conf'
 
       # JetBrains vmoptions
       set ___MY_VMOPTIONS_SHELL_FILE "$HOME/.jetbrains.vmoptions.sh"
@@ -77,8 +76,23 @@
       };
 
       nrsu = {
-        description = "NixOS rebuild switch and upgrade";
-        body = "sudo nixos-rebuild switch --flake ~/nixos#(hostname) --upgrade";
+        description = "Update flake inputs, commit lock, rebuild & switch";
+        body = ''
+          set -l flake_dir ~/nixos
+
+          nix flake update --flake $flake_dir
+          or return
+
+          pushd $flake_dir
+          git add flake.lock
+          # коммитим только если есть что коммитить
+          if not git diff --cached --quiet -- flake.lock
+              git commit -m "routine: update flake.lock"
+          end
+          popd
+
+          sudo nixos-rebuild switch --flake $flake_dir#(hostname)
+        '';
       };
     };
   };
