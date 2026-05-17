@@ -11,8 +11,8 @@
   programs.anime-game-launcher.enable = true;
 
   environment.systemPackages = with pkgs; [
-    bottles
-    lutris
+    pkgs-stable.lutris
+    pkgs-stable.bottles
     heroic             # Heroic Games Launcher (Epic/GOG/Amazon)
     prismlauncher      # Minecraft
     temurin-bin-21   # для Minecraft 1.21+ нужна Java 21
