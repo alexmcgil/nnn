@@ -102,6 +102,9 @@
 
     # Tree
     tree
+
+    # Minio client
+    minio-client
   ];
 
   # Fish shell
