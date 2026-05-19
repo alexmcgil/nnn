@@ -7,5 +7,6 @@
     postman
     dbeaver-bin
     obsidian
+    thunar
   ];
 }
