@@ -12,5 +12,7 @@
     feishin        # Navidrome/Jellyfin музыкальный клиент
     haruna         # KDE видеоплеер
     qbittorrent
+
+    ffmpeg-full
   ];
 }
