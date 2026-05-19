@@ -32,9 +32,6 @@
       # LM Studio CLI
       fish_add_path /home/alexmcgil/.lmstudio/bin
 
-      # opencode
-      fish_add_path /home/alexmcgil/.opencode/bin
-
       # fnm
       fnm env --use-on-cd --shell fish | source
     '';
