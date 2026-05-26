@@ -253,6 +253,69 @@ PersistentKeepalive = 25
 
 `AllowedIPs` НЕ `0.0.0.0/0` — не заворачиваем весь интернет клиента через Pi на бытовой Wi-Fi.
 
+## Доступ к dev-серверам по localhost на клиенте
+
+Цель: `http://localhost:5173` (и `:3000`) на ноуте должен открывать dev-сервер с desktop-amd так, как если бы он был локальным. `ssh -L` для этого не годится — Vite/HMR гонят много мелких запросов, TCP-over-TCP душит latency.
+
+Решение — перенаправлять трафик на ноуте в WG-туннель к `192.168.0.107`. Два рецепта; выбор зависит от ситуации на момент применения.
+
+### Рецепт A — iptables DNAT (прозрачно через ядро)
+
+Прозрачно для приложений. Ядро ноута переписывает destination до отправки пакета. Vite/браузер думают что общаются с 127.0.0.1, физически пакеты идут на `192.168.0.107` через `wg0`.
+
+```bash
+# Включить маршрутизацию loopback-адресов
+sudo sysctl -w net.ipv4.conf.all.route_localnet=1
+
+# Правила DNAT
+sudo iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1 --dport 5173 \
+  -j DNAT --to-destination 192.168.0.107:5173
+sudo iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1 --dport 3000 \
+  -j DNAT --to-destination 192.168.0.107:3000
+```
+
+Удобно повесить включение/выключение на жизненный цикл WG, иначе при выключенном туннеле `localhost:5173` будет уходить «в никуда» и не запустишь локальный dev-сервер. В клиентский WG-конфиг (`[Interface]` ноута):
+
+```ini
+PostUp   = sysctl -w net.ipv4.conf.all.route_localnet=1; \
+           iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1 --dport 5173 -j DNAT --to-destination 192.168.0.107:5173; \
+           iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1 --dport 3000 -j DNAT --to-destination 192.168.0.107:3000
+PostDown = iptables -t nat -D OUTPUT -p tcp -d 127.0.0.1 --dport 5173 -j DNAT --to-destination 192.168.0.107:5173; \
+           iptables -t nat -D OUTPUT -p tcp -d 127.0.0.1 --dport 3000 -j DNAT --to-destination 192.168.0.107:3000
+```
+
+Применим к Arch и любому Linux-клиенту с iptables. Для NixOS-клиента (будущий nix-laptop) ровно те же правила декларативно через `networking.firewall.extraCommands` или `networking.nftables.tables`, но пока не входит в scope этого spec'а.
+
+### Рецепт B — socat user-сервис (без root)
+
+socat слушает `127.0.0.1:5173` и форвардит на `192.168.0.107:5173`. Без iptables, без root. Один hop в userspace — оверхед ничтожный по сравнению с ssh-туннелем.
+
+`~/.config/systemd/user/dev-forward-5173.service`:
+
+```ini
+[Unit]
+Description=Forward localhost:5173 → desktop-amd:5173 via WG
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:5173,bind=127.0.0.1,fork,reuseaddr TCP:192.168.0.107:5173
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+```
+
+```bash
+systemctl --user enable --now dev-forward-5173.service
+# аналогично для 3000
+```
+
+Минус: порт `5173` на ноуте теперь всегда занят форвардером — локальный dev на этом порту не запустишь без остановки сервиса.
+
+### Какой когда
+
+- **A** — для рабочего сценария «всегда подключен к домашнему dev'у», локальные dev-серверы редко
+- **B** — для случаев когда iptables запрещён политикой или хочется отвязать форвардинг от состояния WG
+
 ## Критерии приёмки
 
 С внешнего клиента, поднявшего туннель:
@@ -262,6 +325,7 @@ PersistentKeepalive = 25
 - `ssh alexmcgil@192.168.0.107` — SSH работает
 - Moonlight: «Add Computer» по IP `192.168.0.107` стримит экран
 - `curl http://192.168.0.107:5173` доступен с клиента
+- После применения рецепта A или B (см. «Доступ к dev-серверам по localhost на клиенте»): `curl http://localhost:5173` на ноуте отдаёт ответ dev-сервера desktop-amd, Vite HMR работает
 
 ## Вне области задачи
 
