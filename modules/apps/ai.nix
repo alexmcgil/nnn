@@ -5,5 +5,8 @@
   environment.systemPackages = with pkgs; [
     lmstudio
     opencode
+
+    claude-code
+    claude-monitor
   ];
 }
