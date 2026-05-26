@@ -16,17 +16,17 @@
     peers = [
       # Ноут
       {
-        publicKey = "REPLACE_WITH_LAPTOP_PUBKEY";
+        publicKey = "Bcfz3BMHHQykVJ8cXiiDq6PMkX+osEWL3M5TMr8McFg=";
         allowedIPs = [ "10.100.0.2/32" ];
       }
       # Телефон
       {
-        publicKey = "REPLACE_WITH_PHONE_PUBKEY";
+        publicKey = "9O4au1C63e+1ghzl/tjocG979u4IACu4HJ52mvkkUxQ=";
         allowedIPs = [ "10.100.0.3/32" ];
       }
       # Запасной peer
       {
-        publicKey = "REPLACE_WITH_SPARE_PUBKEY";
+        publicKey = "jYpMXWfhPa97hoK/yQteyYVnZSZ+gWCh4Abr8578jHM=";
         allowedIPs = [ "10.100.0.4/32" ];
       }
     ];
