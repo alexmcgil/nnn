@@ -36,6 +36,8 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   nixConfig = {
@@ -62,11 +64,7 @@
             };
           };
           modules = [
-            disko.nixosModules.disko
             home-manager.nixosModules.home-manager
-            niri.nixosModules.niri
-            aagl.nixosModules.default
-            zapret-discord-youtube.nixosModules.default
             ./hosts/${hostname}
           ] ++ extraModules;
         };
@@ -76,11 +74,31 @@
         desktop-amd = mkHost {
           system = "x86_64-linux";
           hostname = "desktop-amd";
+          extraModules = [
+            disko.nixosModules.disko
+            niri.nixosModules.niri
+            aagl.nixosModules.default
+            zapret-discord-youtube.nixosModules.default
+          ];
         };
 
         laptop-intel = mkHost {
           system = "x86_64-linux";
           hostname = "laptop-intel";
+          extraModules = [
+            disko.nixosModules.disko
+            niri.nixosModules.niri
+            aagl.nixosModules.default
+            zapret-discord-youtube.nixosModules.default
+          ];
+        };
+
+        pi-bridge = mkHost {
+          system = "aarch64-linux";
+          hostname = "pi-bridge";
+          extraModules = [
+            inputs.nixos-hardware.nixosModules.raspberry-pi-4
+          ];
         };
       };
     };
