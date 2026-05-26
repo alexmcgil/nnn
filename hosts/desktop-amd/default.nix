@@ -46,5 +46,8 @@
 
   networking.hostName = "desktop-amd";
 
+  # Cross-build aarch64 артефактов (sdImage для Pi) через qemu-user
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   system.stateVersion = "25.11";
 }
