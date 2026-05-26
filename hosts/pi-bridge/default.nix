@@ -22,7 +22,7 @@
 
   # SSH-ключ для деплоя с desktop-amd
   users.users.alexmcgil.openssh.authorizedKeys.keys = [
-    "REPLACE_WITH_SSH_PUBKEY"
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8qMrdapDPrwavCpN8OBvcfp3tFGG9noD2RRC6TSchmXllhsCtX9OlkMXFUHGPvxke2kGDRTsyhZGpBPbQkeGa9MrFY0D0uttFsza147zjJ41LAYF0LZTFnW1Ucz+CtJCeyi+UReFG4qg8ddwWY6yj50QfMAT050Cc4/BptVgdEZa5hLFP7rOQl90GEkmeuyJaUEP4/8oAkIFaByvfsnajc4JLJQEtdjQqal7uy5ngO+eLKmqcqjVWdtiUNFPRz8toNw9QcErf7OfLt4xUyoPvSNLDocjL57qJqXEF2SNOlCfx19hhjWJTftWLYfCMeAawy62Iz+e5WZGfnyZmcS0fh22Drny0r4b9Ec944tGCLIYKlyFYHNIC2m/EasaCCQilEPYP/mPXyn7iWd66/jcsD1iGHH36l9V5PJx796zU2aeSHY+t+W2umF3fBEnUeyoaYaAIUFWL55xqEb1tzg2gmgso6FzkmDWAT57++2B+H8UFmEvCcTjmaYNGzOu8J4s= alexmcgil@sap"
   ];
 
   # sudo без пароля для wheel — нужно для nixos-rebuild --target-host
