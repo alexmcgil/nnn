@@ -96,9 +96,6 @@
         pi-bridge = mkHost {
           system = "aarch64-linux";
           hostname = "pi-bridge";
-          extraModules = [
-            inputs.nixos-hardware.nixosModules.raspberry-pi-4
-          ];
         };
       };
     };
