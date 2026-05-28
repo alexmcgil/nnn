@@ -8,5 +8,6 @@
     dbeaver-bin
     obsidian
     thunar
+    localsend
   ];
 }
