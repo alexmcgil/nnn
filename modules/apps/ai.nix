@@ -8,5 +8,6 @@
 
     claude-code
     claude-monitor
+    happy-coder
   ];
 }
