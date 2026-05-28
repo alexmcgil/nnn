@@ -87,8 +87,14 @@
   # ---- Noctalia shell ----
   imports = [
     inputs.noctalia.homeModules.default
+    inputs.peon-ping.homeManagerModules.default
     ./fish.nix
   ];
+
+  programs.peon-ping = {
+    enable = true;
+    claudeCodeIntegration = true;
+  };
 
   programs.noctalia-shell = {
     enable = true;
