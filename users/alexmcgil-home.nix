@@ -93,7 +93,7 @@
 
   programs.peon-ping = {
     enable = true;
-    package = inputs.peon-ping.packages.${pkgs.system}.default;
+    package = inputs.peon-ping.packages.${pkgs.stdenv.hostPlatform.system}.default;
     claudeCodeIntegration = true;
   };
 

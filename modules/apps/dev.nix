@@ -24,6 +24,9 @@
     zed-editor
     jetbrains.idea
 
+    # Language servers
+    nil
+
     # Компиляторы и системы сборки
     # gcc
     # clang
