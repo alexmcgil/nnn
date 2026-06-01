@@ -134,7 +134,7 @@
         clipper            = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         kaomoji-provider   = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         mini-docker        = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
-        model-usage        = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
+        model-usage        = { enabled = false;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         mpvpaper           = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         network-manager-vpn = { enabled = true; sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
         privacy-indicator  = { enabled = true;  sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins"; };
@@ -237,7 +237,6 @@
             }
             { iconColor = "none"; id = "KeepAwake"; textColor = "none"; }
             { id = "plugin:assistant-panel"; defaultSettings = { ai = { apiKeys = {}; maxHistoryLength = 100; model = "gemini-2.5-flash"; openaiBaseUrl = "https://api.openai.com/v1/chat/completions"; openaiLocal = false; provider = "google"; systemPrompt = "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful."; temperature = 0.7; }; maxHistoryLength = 100; panelDetached = true; panelHeightRatio = 0.85; panelPosition = "right"; panelWidth = 520; scale = 1; translator = { backend = "google"; deeplApiKey = ""; realTimeTranslation = true; sourceLanguage = "auto"; targetLanguage = "en"; }; }; }
-            { id = "plugin:model-usage"; defaultSettings = { barCycleIntervalSec = 5; barDisplayMode = "active"; barMetric = "prompts"; providers = { claude = { credentialsPath = "~/.claude/.credentials.json"; enabled = false; statsPath = "~/.claude/stats-cache.json"; }; codex = { enabled = false; }; copilot = { enabled = false; }; openrouter = { apiKey = ""; enabled = false; }; zen = { apiKey = ""; enabled = false; }; }; refreshIntervalSec = 30; }; }
             { id = "plugin:mini-docker"; defaultSettings = { refreshInterval = 5000; }; }
           ];
           center = [
