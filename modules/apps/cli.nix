@@ -8,24 +8,20 @@
     starship
 
     # Замена стандартных утилит
+    # (git/ripgrep/fd/jq/btop/tree/unzip — в core.nix)
     bat            # cat с подсветкой синтаксиса
     eza            # ls с иконками и деревом
-    fd             # find
-    ripgrep        # grep
     ripgrep-all    # grep по PDF/Office/ZIP и т.д.
     fzf            # fuzzy finder
     zoxide         # cd с историей
-    jq             # JSON
     yq-go          # YAML/XML/TOML
     sd             # sed замена
 
     # Системный мониторинг
-    btop
     duf            # du/df
     ncdu           # ncurses du
 
     # Архивы
-    unzip
     p7zip
     unrar
 
@@ -64,11 +60,6 @@
     # Параллельное выполнение
     parallel
 
-    # Диагностика дисков
-    nvme-cli        # уже в core.nix, но не помешает
-    smartmontools   # уже в core.nix
-    btrfs-progs     # уже в core.nix
-
     # Изображения в терминале
     imagemagick
 
@@ -89,9 +80,6 @@
 
     # Эффекты терминала
     cava            # аудио-визуализатор для noctalia (template cava)
-
-    # Tree
-    tree
 
     # Minio client
     minio-client
