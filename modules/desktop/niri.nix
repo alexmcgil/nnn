@@ -18,6 +18,9 @@
   environment.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    # KDE platform theme — Qt-приложения подхватывают стиль/иконки/диалоги KDE
+    # (плагин из kdePackages.plasma-integration, ставится модулем plasma.nix)
+    QT_QPA_PLATFORMTHEME = "kde";
     XDG_CURRENT_DESKTOP = "niri";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";

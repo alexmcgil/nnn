@@ -88,8 +88,22 @@
   imports = [
     inputs.noctalia.homeModules.default
     inputs.peon-ping.homeManagerModules.default
+    inputs.plasma-manager.homeModules.plasma-manager
     ./fish.nix
   ];
+
+  # ---- KDE/Qt темизация ----
+  # plasma-manager управляет ТОЛЬКО иконками и widget-style.
+  # Цветами (Tokyo Night) управляет noctalia через templates qt/gtk —
+  # поэтому overrideConfig НЕ включаем (иначе война за [Colors:*]/ColorScheme).
+  # Чинит сломанные ссылки на Arch-темы (breeze-plus-dark / Darkly).
+  programs.plasma = {
+    enable = true;
+    workspace.iconTheme = "Papirus-Dark";
+    configFile.kdeglobals.KDE.widgetStyle = "Breeze";
+  };
+
+  home.packages = [ pkgs.papirus-icon-theme ];
 
   programs.peon-ping = {
     enable = true;
