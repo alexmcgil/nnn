@@ -79,4 +79,22 @@
   # Нужны Noctalia для виджетов Battery/PowerProfile
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
+
+  # zram — сжатый swap в ОЗУ (zstd ~3:1). Дисковый swap не используем:
+  # гибернация не нужна, а swap-файл на btrfs требует NOCOW-subvolume.
+  # 50% от 60 ГБ ОЗУ — с запасом, реально использоваться будет редко.
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
+  # При zram-only swap имеет смысл агрессивнее выгружать холодные страницы
+  # в быстрый сжатый swap (дефолт 60 рассчитан на медленный диск).
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
+  };
 }
