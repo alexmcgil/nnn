@@ -88,17 +88,7 @@
     playerctl
 
     # Эффекты терминала
-    cava
-
-    # Theming
-    matugen         # генерация Material You цветов
-
-    # Уведомления
-    mako
-
-    # Launchers / bars
-    fuzzel
-    waybar
+    cava            # аудио-визуализатор для noctalia (template cava)
 
     # Tree
     tree
