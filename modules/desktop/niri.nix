@@ -18,9 +18,10 @@
   environment.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    # KDE platform theme — Qt-приложения подхватывают стиль/иконки/диалоги KDE
-    # (плагин из kdePackages.plasma-integration, ставится модулем plasma.nix)
-    QT_QPA_PLATFORMTHEME = "kde";
+    # NB: QT_QPA_PLATFORMTHEME=kde НЕ задаём — он навязывает QtQuick-стиль
+    # org.kde.breeze (требует org.kde.kirigami) всем Qt-Quick приложениям и
+    # роняет noctalia/quickshell на старте. dolphin и так берёт иконки/стиль
+    # из kdeglobals (KConfig), platform theme для этого не нужен.
     XDG_CURRENT_DESKTOP = "niri";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
