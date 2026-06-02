@@ -372,6 +372,7 @@
           { enabled = true; id = "discord"; }
           { enabled = true; id = "gtk"; }
           { enabled = true; id = "qt"; }
+          { enabled = true; id = "kcolorscheme"; } # KDE/Breeze (dolphin и др.) — Tokyo Night в kdeglobals
           { enabled = true; id = "zed"; }
           { enabled = true; id = "kitty"; }
           { enabled = true; id = "niri"; }
