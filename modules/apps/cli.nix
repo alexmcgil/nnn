@@ -83,6 +83,9 @@
 
     # Minio client
     minio-client
+
+    # Redis client (redis-cli)
+    redis
   ];
 
   # Fish shell
