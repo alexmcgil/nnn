@@ -51,8 +51,8 @@ Quest 3 ──WiFi 5GHz── wlp9s0 (AP, 10.42.0.1/24, dnsmasq DHCP/DNS)
 
 ```
 [connection] id=vr-hotspot, type=wifi, interface-name=wlp9s0, autoconnect=true
-[wifi]       mode=ap, ssid=<SSID>, band=a, channel=36
-[wifi-security] key-mgmt=sae  (WPA3; fallback wpa-psk при проблемах со шлемом), psk=<inline>
+[wifi]       mode=ap, ssid=Quest3-VR, band=a, channel=36
+[wifi-security] key-mgmt=sae  (WPA3; fallback wpa-psk при проблемах со шлемом), psk=adminroot
 [ipv4]       method=shared          # dnsmasq DHCP/DNS + NAT + forwarding
 [ipv6]       method=disabled
 ```
@@ -115,4 +115,4 @@ Quest 3 ──WiFi 5GHz── wlp9s0 (AP, 10.42.0.1/24, dnsmasq DHCP/DNS)
 - Точный синтаксис `ensureProfiles` keyfile в текущей версии nixpkgs (flake.lock).
 - Где именно ставить MSS-clamp (nftables `extraForwardRules` vs `extraCommands`).
 - Проверка, что NM реально автозапускает AP-профиль; иначе — systemd-подстраховка.
-- Имя SSID и пароль.
+- SSID: `Quest3-VR`, пароль: `adminroot` (9 символов — проходит минимум WPA2/WPA3).
