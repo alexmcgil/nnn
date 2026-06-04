@@ -20,9 +20,14 @@
     enable = true;
     radios.wlp9s0 = {
       band = "5g";
-      channel = 36;          # без DFS
+      channel = 36;          # без DFS; 80 МГц занимает 36–48
       countryCode = "RU";
-      # wifi4 (HT) и wifi5 (VHT) включены по умолчанию; ширина 20/40 МГц — надёжный старт
+      # 80 МГц ради битрейта стрима. На канале 36 вторичный канал — вверх (HT40+)
+      wifi4.capabilities = [ "HT40+" "SHORT-GI-20" "SHORT-GI-40" ];
+      wifi5 = {
+        operatingChannelWidth = "80";
+        capabilities = [ "SHORT-GI-80" ];
+      };
       networks.wlp9s0 = {
         ssid = "Quest3-VR";
         authentication = {
