@@ -9,6 +9,12 @@
   # wlp9s0 забираем у NetworkManager — им управляет hostapd
   networking.networkmanager.unmanaged = [ "interface-name:wlp9s0" ];
 
+  # NM с backend wpa_supplicant включает networking.wireless.enable (D-Bus-controlled),
+  # из-за чего hostapd-модуль выдаёт ложный warning о "client+AP на одном интерфейсе".
+  # Единственная WiFi-карта целиком под hostapd, NM обслуживает только Ethernet —
+  # отдельный wpa_supplicant не нужен, отключаем (заодно убирает warning).
+  networking.wireless.enable = lib.mkForce false;
+
   # Регуляторная БД для корректной работы 5 ГГц AP (мощность/каналы)
   hardware.wirelessRegulatoryDatabase = true;
   boot.extraModprobeConfig = ''
@@ -22,6 +28,9 @@
       band = "5g";
       channel = 36;          # без DFS; 80 МГц занимает 36–48
       countryCode = "RU";
+      # OBSS-скан совместимости HT40 падает из-за соседних 5 ГГц-сетей на вторичном
+      # канале ("Interface initialization failed") — отключаем его для широкого канала
+      noScan = true;
       # 80 МГц ради битрейта стрима. На канале 36 вторичный канал — вверх (HT40+)
       wifi4.capabilities = [ "HT40+" "SHORT-GI-20" "SHORT-GI-40" ];
       wifi5 = {
