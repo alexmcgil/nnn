@@ -40,6 +40,7 @@
     ../../modules/services/fwupd.nix
     ../../modules/services/openrgb.nix
     ../../modules/services/zapret.nix
+    ../../modules/services/vr-streaming.nix
 
     ../../users/alexmcgil.nix
   ];
