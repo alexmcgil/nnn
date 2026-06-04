@@ -37,6 +37,10 @@
         operatingChannelWidth = "80";
         capabilities = [ "SHORT-GI-80" ];
       };
+      # hostapd-модуль не выставляет индекс центрального канала сегмента для VHT80.
+      # Для 80 МГц на канале 36 центр — канал 42 (cf1=5210 МГц). Без него hostapd
+      # падает с "Unable to setup interface". Добавляем напрямую.
+      settings.vht_oper_centr_freq_seg0_idx = 42;
       networks.wlp9s0 = {
         ssid = "Quest3-VR";
         authentication = {
