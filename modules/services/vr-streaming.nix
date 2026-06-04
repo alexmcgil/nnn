@@ -78,4 +78,17 @@
   # 5. Прямой приватный линк ПК <-> шлем открываем целиком
   #    (DHCP/DNS + порты ALVR/WiVRn/SteamVR), интерфейс не смотрит во внешнюю сеть
   networking.firewall.trustedInterfaces = [ "wlp9s0" ];
+
+  # 6. VR-стриминг-софт
+  services.wivrn = {
+    enable = true;
+    openFirewall = true;
+    autoStart = false;       # запускать по необходимости (рядом живут SteamVR/ALVR)
+  };
+
+  environment.systemPackages = with pkgs; [
+    alvr
+    monado
+    android-tools   # adb для установки клиента ALVR на Quest
+  ];
 }
