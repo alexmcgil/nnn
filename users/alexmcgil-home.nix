@@ -619,6 +619,17 @@
         }
       ];
 
+      # Обои overview на бэкдропе niri (видны в Overview и между воркспейсами).
+      # noctalia рисует размытую версию обоев на surface с namespace
+      # "noctalia-overview*"; этим правилом niri кладёт его в backdrop.
+      # Работает только для background layer-surface, игнорирующих exclusive zone.
+      layer-rules = [
+        {
+          matches = [ { namespace = "^noctalia-overview"; } ];
+          place-within-backdrop = true;
+        }
+      ];
+
       binds = {
         "Mod+Shift+Slash".action.show-hotkey-overlay = [];
         "Mod+Space".action.spawn  = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
