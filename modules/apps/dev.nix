@@ -26,6 +26,7 @@
 
     # Language servers
     nil
+    nixd
 
     # Компиляторы и системы сборки
     # gcc
