@@ -6,5 +6,6 @@
     discord
     teams-for-linux
     thunderbird
+    deltachat-desktop
   ];
 }
