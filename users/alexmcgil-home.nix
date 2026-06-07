@@ -382,6 +382,7 @@
       };
 
       wallpaper = {
+        overviewEnabled = true;
         automationEnabled = true;        # default: false
         directory = "/home/alexmcgil/Pictures/Wallpapers";
       };
