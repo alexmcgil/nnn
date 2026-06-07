@@ -18,7 +18,7 @@
 - **Файловая система:** btrfs с subvolumes (`@`, `@nix`, `@log`, `@snapshots`), compression `zstd:3`, опции `noatime,ssd,discard=async`
 - **Bootloader:** systemd-boot, ESP 1 GB на /boot
 - **Ядро:** `pkgs.linuxPackages_latest`
-- **stateVersion:** `25.11` (можно подключить unstable репозиторий)
+- **stateVersion:** `26.05` (можно подключить unstable репозиторий)
 - **Менеджер паролей:** ТОЛЬКО KeePassXC. KWallet и GNOME Keyring должны быть выключены/исключены (включая автоподнятие как PAM-модуля и автостарт в KDE).
 
 ## Структура репозитория
@@ -292,7 +292,7 @@ imports = [
   ../../users/alexmcgil.nix
 ];
 
-system.stateVersion = "25.11";
+system.stateVersion = "26.05";
 ```
 
 ## hosts/laptop-intel/* — заглушка
@@ -328,7 +328,7 @@ fonts.fontconfig.defaultFonts = {
 
 В README напиши **по-русски**, пошаговый сценарий установки:
 
-1. Подготовить флешку с NixOS minimal ISO (25.11 unstable, ссылка).
+1. Подготовить флешку с NixOS minimal ISO (26.05 unstable, ссылка).
 2. Загрузиться, перейти в root: `sudo -i`.
 3. Включить flakes: `nix-env -iA nixos.git`, либо `nix-shell -p git`.
 4. Склонировать этот репозиторий в `/tmp/nixos`.

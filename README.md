@@ -76,7 +76,7 @@ ls -la /dev/disk/by-id/ | grep nvme
 
 ### 1. Подготовить установочную флешку
 
-Скачать NixOS minimal ISO (unstable/25.11):
+Скачать NixOS minimal ISO (unstable/26.05):
 ```
 https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
 ```

@@ -3,7 +3,7 @@
 {
   home.username = "alexmcgil";
   home.homeDirectory = "/home/alexmcgil";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   
   xdg.mimeApps = {
     enable = true;
