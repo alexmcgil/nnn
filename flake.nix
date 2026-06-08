@@ -38,8 +38,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Запинено на ветку legacy-v4. main/v5 — переписанный с нуля alpha-шелл
+    # (C++/OpenGL ES) с несовместимым форматом конфига (TOML вместо JSON,
+    # модуль programs.noctalia вместо programs.noctalia-shell, плагины → Luau).
+    # Тянуть legacy-v4 — значит оставаться на v4 и получать его багфиксы,
+    # при этом nix flake update не утащит на v5.
+    # План перехода на v5 зафиксирован в docs/noctalia-v5-migration.md
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
