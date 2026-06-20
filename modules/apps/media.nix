@@ -14,5 +14,7 @@
     qbittorrent
 
     ffmpeg-full
+
+    bambu-studio
   ];
 }
