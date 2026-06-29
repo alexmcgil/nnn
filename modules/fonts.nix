@@ -12,7 +12,6 @@
     inter
     open-sans
     jetbrains-mono
-    cantarell-fonts
     twitter-color-emoji
     nerd-fonts.jetbrains-mono
     nerd-fonts.fantasque-sans-mono
