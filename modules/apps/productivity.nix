@@ -9,6 +9,7 @@
     obsidian
     thunar
     localsend
+    kdePackages.filelight
 
     qmk
     via
