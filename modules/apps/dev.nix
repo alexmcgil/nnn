@@ -22,7 +22,7 @@
 
     # Редакторы
     zed-editor
-    jetbrains.idea
+    # jetbrains.idea
 
     # Language servers
     nil
