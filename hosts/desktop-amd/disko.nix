@@ -100,6 +100,20 @@
     options = [ "defaults" "nofail" ];
   };
 
+  # SSD sda2 — btrfs (дефолтный subvol)
+  # UUID: 17e03bc1-3435-4ab4-b51d-03627c426997
+  fileSystems."/mnt/ssd" = {
+    device = "/dev/disk/by-uuid/17e03bc1-3435-4ab4-b51d-03627c426997";
+    fsType = "btrfs";
+    options = [
+      "compress=zstd:3"
+      "noatime"
+      "ssd"
+      "discard=async"
+      "nofail"
+    ];
+  };
+
   # tmpfs для /tmp
   fileSystems."/tmp" = {
     device = "tmpfs";
