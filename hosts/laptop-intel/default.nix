@@ -20,6 +20,7 @@
     ../../modules/desktop/niri.nix
 
     ../../modules/apps/cli.nix
+    ../../modules/apps/open-design.nix
     ../../modules/apps/browsers.nix
     ../../modules/apps/messengers.nix
     ../../modules/apps/dev.nix
