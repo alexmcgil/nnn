@@ -29,6 +29,7 @@
     ../../modules/apps/steam.nix
     ../../modules/apps/gaming.nix
     ../../modules/apps/docker.nix
+    ../../modules/apps/podman.nix
     ../../modules/apps/virt.nix
     ../../modules/apps/waydroid.nix
     ../../modules/apps/flatpak.nix
