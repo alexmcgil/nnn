@@ -7,6 +7,8 @@
     gamescopeSession.enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
+
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
   # GameMode — позволяет играм запрашивать повышение приоритета

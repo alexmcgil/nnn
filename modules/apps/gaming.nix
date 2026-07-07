@@ -26,5 +26,7 @@
     winetricks
     wineWow64Packages.stagingFull
     umu-launcher       # Unified Launcher для Proton
+
+    protonup-ng
   ];
 }
