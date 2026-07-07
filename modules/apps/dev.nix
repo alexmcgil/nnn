@@ -20,6 +20,8 @@
     # Prisma engines (для работы без скачивания бинарников)
     prisma-engines
 
+    glab
+
     # Редакторы
     zed-editor
     # jetbrains.idea
