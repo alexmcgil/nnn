@@ -26,13 +26,37 @@
       "x-scheme-handler/https"           = "zen-beta.desktop";
       "x-scheme-handler/chrome"          = "zen-beta.desktop";
   
-      # PDF
-      "application/pdf"                  = "zen.desktop";
-  
+      # PDF (zen.desktop не существует — правильный id zen-beta.desktop)
+      "application/pdf"                  = "zen-beta.desktop";
+
       # Архивы
       "application/zip"                  = "org.kde.ark.desktop";
       "application/x-xz-compressed-tar"  = "org.kde.ark.desktop";
-  
+
+      # Изображения (nsxiv — лёгкий X11-вьювер через Xwayland).
+      # nsxiv.desktop помечен NoDisplay=true (в меню приложений не светится),
+      # но как явный дефолт-хендлер KIO/GIO вызывают его штатно.
+      "image/png"                        = "nsxiv.desktop";
+      "image/jpeg"                       = "nsxiv.desktop";
+      "image/gif"                        = "nsxiv.desktop";
+      "image/webp"                       = "nsxiv.desktop";
+      "image/bmp"                        = "nsxiv.desktop";
+      "image/tiff"                       = "nsxiv.desktop";
+      # SVG nsxiv не рендерит (imlib2 без svg-лоадера) — отдаём Gwenview.
+      "image/svg+xml"                    = "org.kde.gwenview.desktop";
+
+      # Видео / аудио (mpv — тот же плеер, что preferredPlayer в noctalia)
+      "video/mp4"                        = "mpv.desktop";
+      "video/x-matroska"                 = "mpv.desktop";
+      "video/webm"                       = "mpv.desktop";
+      "video/quicktime"                  = "mpv.desktop";
+      "video/x-msvideo"                  = "mpv.desktop";
+      "audio/mpeg"                       = "mpv.desktop";
+      "audio/flac"                       = "mpv.desktop";
+      "audio/x-wav"                      = "mpv.desktop";
+      "audio/ogg"                        = "mpv.desktop";
+      "audio/aac"                        = "mpv.desktop";
+
       # Thunderbird (почта, календарь, RSS)
       "x-scheme-handler/mailto"          = "org.mozilla.Thunderbird.desktop";
       "message/rfc822"                   = "org.mozilla.Thunderbird.desktop";
@@ -70,10 +94,10 @@
   
     # Added Associations — дополнительные приложения, которыми можно открыть файл
     associations.added = {
-      "text/html"                        = [ "zen-beta.desktop" "zen.desktop" ];
-      "application/xhtml+xml"            = [ "zen-beta.desktop" "zen.desktop" ];
-      "x-scheme-handler/http"            = [ "zen-beta.desktop" "zen.desktop" ];
-      "x-scheme-handler/https"           = [ "zen-beta.desktop" "zen.desktop" ];
+      "text/html"                        = [ "zen-beta.desktop" ];
+      "application/xhtml+xml"            = [ "zen-beta.desktop" ];
+      "x-scheme-handler/http"            = [ "zen-beta.desktop" ];
+      "x-scheme-handler/https"           = [ "zen-beta.desktop" ];
       "application/zip"                  = [ "org.kde.ark.desktop" ];
       "x-scheme-handler/tg"              = [ "org.telegram.desktop.desktop" ];
       "x-scheme-handler/tonsite"         = [ "org.telegram.desktop.desktop" ];

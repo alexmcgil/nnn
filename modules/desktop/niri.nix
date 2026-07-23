@@ -23,6 +23,15 @@
     # роняет noctalia/quickshell на старте. dolphin и так берёт иконки/стиль
     # из kdeglobals (KConfig), platform theme для этого не нужен.
     XDG_CURRENT_DESKTOP = "niri";
+    # KDE-приложения (Dolphin/Ark/Gwenview) под не-Plasma сессией: KIO строит
+    # список приложений и дефолты не из mimeapps.list, а из бинарного кэша KDE
+    # ksycoca. Наполняет его kbuildsycoca6, перечисляя .desktop через XDG-меню
+    # ${XDG_MENU_PREFIX}applications.menu. Без префикса ищется applications.menu,
+    # которого в системе НЕТ (есть только plasma-applications.menu из plasma6) —
+    # тогда фабрика приложений в ksycoca собирается ПУСТОЙ, и в Dolphin
+    # "Открыть с помощью" пуст + не работают дефолты для всех типов.
+    # Явный plasma- чинит это (в чистой Plasma-сессии его выставляет сам Plasma).
+    XDG_MENU_PREFIX = "plasma-";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
     LIBVA_DRIVER_NAME = "nvidia";

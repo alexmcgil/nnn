@@ -8,6 +8,7 @@
     audacity
     gimp3
     krita
+    nsxiv          # лёгкий вьювер изображений (X11 → Xwayland), дефолт для image/*
     kdePackages.kdenlive
     feishin        # Navidrome/Jellyfin музыкальный клиент
     haruna         # KDE видеоплеер
