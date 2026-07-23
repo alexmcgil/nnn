@@ -15,6 +15,6 @@
 
     ffmpeg-full
 
-    bambu-studio
+    # bambu-studio
   ];
 }
