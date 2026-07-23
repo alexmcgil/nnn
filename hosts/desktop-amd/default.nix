@@ -51,4 +51,9 @@
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   system.stateVersion = "26.05";
+
+  nix.settings = {
+    cores = 12;
+    max-jobs = 2;
+  };
 }
