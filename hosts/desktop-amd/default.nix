@@ -53,7 +53,7 @@
   system.stateVersion = "26.05";
 
   nix.settings = {
-    cores = 12;
+    cores = 6;
     max-jobs = 2;
   };
 }
