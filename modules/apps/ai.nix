@@ -8,6 +8,9 @@
 
     claude-code
     claude-monitor
+    codex
+    codex-acp
+
     # happy-coder
   ];
 }
