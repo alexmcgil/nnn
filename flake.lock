@@ -269,6 +269,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2605": {
+      "locked": {
+        "lastModified": 1785858998,
+        "narHash": "sha256-fKCq5jphd6l/Ms6gc3dptkw/TcKLYub9lQE5g6rbbkc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "04607e1165ac22c5fde6dcc54c9e0b3c0487c555",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1782847189,
@@ -496,6 +512,7 @@
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-2605": "nixpkgs-2605",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "noctalia": "noctalia",
         "open-design": "open-design",
