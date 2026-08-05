@@ -8,8 +8,13 @@
     ];
   };
 
-  # WireGuard — ядерный модуль встроен в linuxPackages_latest
-  # wireguard-tools нужен для wg / wg-quick
+  # Обычный WireGuard встроен в ядро, а AmneziaWG требует отдельного модуля.
+  # Одних amneziawg-tools недостаточно: без модуля GUI создаёт интерфейс, но не
+  # может применить AWG-параметры Jc/Jmin/Jmax и соединение остаётся без handshake.
+  boot.extraModulePackages = [ config.boot.kernelPackages.amneziawg ];
+  boot.kernelModules = [ "amneziawg" ];
+
+  # wireguard-tools и amneziawg-tools нужны для wg/wg-quick и awg/awg-quick.
   environment.systemPackages = with pkgs; [ 
     amnezia-vpn
     amneziawg-tools
