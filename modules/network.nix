@@ -1,18 +1,5 @@
-{ config, lib, pkgs, pkgs-2605, ... }:
+{ config, lib, pkgs, pkgs-stable, ... }:
 
-let
-  # Qt 6.11 разрешает CardWithIconsType на странице импорта не в локальный
-  # Controls2-компонент. В результате свойство recommendedText «не существует»,
-  # хотя оно объявлено в Controls2/CardWithIconsType.qml. Явный namespace
-  # устраняет конфликт QML-типов и позволяет мастеру импорта загрузиться.
-  amnezia-vpn-fixed = pkgs-2605.amnezia-vpn.overrideAttrs (old: {
-    postPatch = (old.postPatch or "") + ''
-      substituteInPlace client/ui/qml/Pages2/PageSetupWizardConfigSource.qml \
-        --replace-fail 'import "../Controls2"' $'import "../Controls2"\nimport "../Controls2" as Controls2' \
-        --replace-fail '            CardWithIconsType {' '            Controls2.CardWithIconsType {'
-    '';
-  });
-in
 {
   networking.networkmanager = {
     enable = true;
@@ -49,10 +36,10 @@ in
 
   # wireguard-tools и amneziawg-tools нужны для wg/wg-quick и awg/awg-quick.
   environment.systemPackages = [
-    # В 4.8.21 из unstable мастер импорта не загружается с Qt 6.11 из-за
-    # несовместимого QML-свойства recommendedText. В 26.05 остаётся рабочая
-    # версия 4.8.15.4; остальная система продолжает использовать unstable.
-    amnezia-vpn-fixed
+    # Версии 4.8.15/4.8.21 из новых каналов собираются с Qt 6.11 и не могут
+    # открыть мастер импорта из-за QML-ошибки recommendedText. Стабильная пара
+    # AmneziaVPN 4.8.6 + Qt 6.9 из 25.05 этой несовместимости не имеет.
+    pkgs-stable.amnezia-vpn
     pkgs.amneziawg-tools
     pkgs.wireguard-tools
   ];
@@ -76,7 +63,7 @@ in
     ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${amnezia-vpn-fixed}/bin/AmneziaVPN-service";
+      ExecStart = "${pkgs-stable.amnezia-vpn}/bin/AmneziaVPN-service";
       Restart = "on-failure";
       RestartSec = "1s";
     };

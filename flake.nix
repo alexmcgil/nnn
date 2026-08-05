@@ -4,9 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    # Отдельный канал для AmneziaVPN: 4.8.21 из unstable несовместим с Qt 6.11
-    # на странице импорта конфигурации (QQmlComponent recommendedText).
-    nixpkgs-2605.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
 
@@ -74,7 +71,7 @@
     ];
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-2605, home-manager, disko, niri, zen-browser, aagl, zapret-discord-youtube, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, disko, niri, zen-browser, aagl, zapret-discord-youtube, ... }@inputs:
       let
       mkHost = { system, hostname, extraModules ? [ ] }:
         nixpkgs.lib.nixosSystem {
@@ -82,10 +79,6 @@
           specialArgs = {
             inherit inputs;
             pkgs-stable = import nixpkgs-stable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            pkgs-2605 = import nixpkgs-2605 {
               inherit system;
               config.allowUnfree = true;
             };
