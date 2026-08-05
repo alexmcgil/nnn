@@ -1,5 +1,18 @@
 { config, lib, pkgs, ... }:
 
+let
+  # В 4.8.21.0 страница импорта присваивает recommendedText компоненту,
+  # который в собранном QML resource bundle не экспортирует это свойство.
+  # Из-за ошибки QQmlComponent мастер не открывается вообще. Сам текст
+  # необязателен: showRecommendedBadge продолжает управлять бейджем.
+  amnezia-vpn-patched = pkgs.amnezia-vpn.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace client/ui/qml/Pages2/PageSetupWizardConfigSource.qml \
+        --replace-fail '                recommendedText: featuredAmneziaConnection ? qsTr("Recommended") : ""' \
+                       '                // recommendedText удалён: несовместим с runtime QML-компонентом'
+    '';
+  });
+in
 {
   networking.networkmanager = {
     enable = true;
@@ -35,8 +48,8 @@
   boot.kernelModules = [ "amneziawg" ];
 
   # wireguard-tools и amneziawg-tools нужны для wg/wg-quick и awg/awg-quick.
-  environment.systemPackages = with pkgs; [ 
-    amnezia-vpn
+  environment.systemPackages = with pkgs; [
+    amnezia-vpn-patched
     amneziawg-tools
     wireguard-tools
   ];
@@ -60,7 +73,7 @@
     ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+      ExecStart = "${amnezia-vpn-patched}/bin/AmneziaVPN-service";
       Restart = "on-failure";
       RestartSec = "1s";
     };
