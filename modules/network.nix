@@ -3,10 +3,16 @@
 {
   networking.networkmanager = {
     enable = true;
+    # AmneziaVPN на Linux настраивает DNS через D-Bus API systemd-resolved.
+    # Без этого интерфейс и handshake поднимаются, но доменный split tunnelling
+    # остаётся без VPN-DNS (в журнале: DnsUtilsLinux DBus errors).
+    dns = "systemd-resolved";
     plugins = with pkgs; [
       networkmanager-openconnect
     ];
   };
+
+  services.resolved.enable = true;
 
   # Обычный WireGuard встроен в ядро, а AmneziaWG требует отдельного модуля.
   # Одних amneziawg-tools недостаточно: без модуля GUI создаёт интерфейс, но не
