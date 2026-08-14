@@ -75,6 +75,10 @@
   # Брандмауэр
   networking.firewall = {
     enable = true;
+    # Контейнеры ходят на хост по bridge-адресу (docker compose → dev-серверы,
+    # напр. restate вызывает workflow-рантаймы на 9080-9083). Без этого пакеты
+    # с bridge-интерфейса режет INPUT, и виден только таймаут.
+    trustedInterfaces = [ "docker0" "br-+" ];
     allowedTCPPorts = [ 25565 8188 3000 5173 1234 8096 53317 ];
     allowedUDPPorts = [ 25565 8188 1234 8096 53317 ];
     # Открываем порты при необходимости в конкретных модулях (jellyfin, sunshine и т.д.)

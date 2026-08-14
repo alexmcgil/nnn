@@ -21,6 +21,8 @@
     prisma-engines
 
     glab
+    warp-terminal
+    lens
 
     # Редакторы
     zed-editor
