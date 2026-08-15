@@ -54,6 +54,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    xmcl = {
+      url = "github:x45iq/xmcl-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Без follows nixpkgs: пакеты (daemon `od` + web) собираются через
     # dream2nix ровно с тем nixpkgs, против которого их тестировал апстрим,
     # что заметно надёжнее для тяжёлой pnpm-сборки. Ценой лишнего eval.

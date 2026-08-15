@@ -113,6 +113,7 @@
     inputs.noctalia.homeModules.default
     inputs.peon-ping.homeManagerModules.default
     inputs.plasma-manager.homeModules.plasma-manager
+    inputs.xmcl.homeModules.xmcl
     ./fish.nix
   ];
 
@@ -133,6 +134,18 @@
     enable = true;
     package = inputs.peon-ping.packages.${pkgs.stdenv.hostPlatform.system}.default;
     claudeCodeIntegration = true;
+  };
+
+  programs.xmcl = {
+    enable = true;
+    # Electron хранит учётные данные через Secret Service,
+    # который в этой конфигурации предоставляет KeePassXC.
+    commandLineArgs = [ ''--password-store="gnome-libsecret"'' ];
+    jres = with pkgs; [
+      jre8
+      temurin-jre-bin-17
+      temurin-jre-bin-21
+    ];
   };
 
   programs.noctalia-shell = {
