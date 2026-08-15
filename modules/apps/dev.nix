@@ -23,6 +23,7 @@
     glab
     warp-terminal
     lens
+    kubectl
 
     # Редакторы
     zed-editor
