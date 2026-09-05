@@ -2,7 +2,7 @@
 
 {
   # Nix settings
-  # Cachix-кэши объявлены в flake.nix → nixConfig (noctalia + aagl)
+  # Cachix-кэши объявлены в flake.nix → nixConfig (aagl)
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
@@ -12,7 +12,6 @@
       "https://nix-community.cachix.org"
       "https://niri.cachix.org"
       "https://ezkea.cachix.org"       # aagl
-      "https://noctalia.cachix.org"    # noctalia-shell
     ];
 
     trusted-public-keys = [
@@ -20,7 +19,6 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 

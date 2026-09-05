@@ -38,17 +38,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Запинено на ветку legacy-v4. main/v5 — переписанный с нуля alpha-шелл
-    # (C++/OpenGL ES) с несовместимым форматом конфига (TOML вместо JSON,
-    # модуль programs.noctalia вместо programs.noctalia-shell, плагины → Luau).
-    # Тянуть legacy-v4 — значит оставаться на v4 и получать его багфиксы,
-    # при этом nix flake update не утащит на v5.
-    # План перехода на v5 зафиксирован в docs/noctalia-v5-migration.md
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/legacy-v4";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     peon-ping = {
       url = "github:PeonPing/peon-ping";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,11 +61,9 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://noctalia.cachix.org"
       "https://ezkea.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
     ];
   };

@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 
 # niri — tiling Wayland compositor
-# noctalia-shell запускается через home-manager (programs.niri.settings.spawn-at-startup)
+# noctalia запускается через home-manager (programs.niri.settings.spawn-at-startup)
 # в users/alexmcgil-home.nix
 
 {
@@ -25,7 +25,7 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     # NB: QT_QPA_PLATFORMTHEME=kde НЕ задаём — он навязывает QtQuick-стиль
     # org.kde.breeze (требует org.kde.kirigami) всем Qt-Quick приложениям и
-    # роняет noctalia/quickshell на старте. dolphin и так берёт иконки/стиль
+    # ломает часть Qt Quick-приложений. dolphin и так берёт иконки/стиль
     # из kdeglobals (KConfig), platform theme для этого не нужен.
     XDG_CURRENT_DESKTOP = "niri";
     # KDE-приложения (Dolphin/Ark/Gwenview) под не-Plasma сессией: KIO строит
