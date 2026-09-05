@@ -67,7 +67,7 @@
     # Без follows nixpkgs: пакеты (daemon `od` + web) собираются через
     # dream2nix ровно с тем nixpkgs, против которого их тестировал апстрим,
     # что заметно надёжнее для тяжёлой pnpm-сборки. Ценой лишнего eval.
-    open-design.url = "github:nexu-io/open-design";
+    # open-design.url = "github:nexu-io/open-design";
   };
 
   nixConfig = {
