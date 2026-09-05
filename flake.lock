@@ -399,6 +399,26 @@
         "type": "github"
       }
     },
+    "paseo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788171040,
+        "narHash": "sha256-MMJ7ZUZShPtMIdARjYtKw1PsoIPpOgSS2SOfwM99pU4=",
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "rev": "63923fdd07bf1053cd0567a32ae5c1e9e200a58b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "type": "github"
+      }
+    },
     "peon-ping": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -499,6 +519,7 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "noctalia": "noctalia",
         "open-design": "open-design",
+        "paseo": "paseo",
         "peon-ping": "peon-ping",
         "plasma-manager": "plasma-manager",
         "xmcl": "xmcl",

@@ -8,6 +8,7 @@
     ../../modules/core.nix
     ../../modules/boot.nix
     ../../modules/network.nix
+    ../../modules/wireguard-p2p.nix
     ../../modules/audio.nix
     ../../modules/bluetooth.nix
     ../../modules/fonts.nix
