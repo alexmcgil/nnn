@@ -8,6 +8,11 @@
   # Включить niri через nixosModule из flake-input sodiboo/niri-flake
   programs.niri.enable = true;
 
+  # niri-flake пока собирает свой пакет с удалённым из unstable
+  # libdisplay-info_0_2. Используем актуальный пакет из nixpkgs, который уже
+  # переведён на libdisplay-info_0_3, сохраняя модуль конфигурации niri-flake.
+  programs.niri.package = pkgs.niri;
+
   # Системные пакеты для niri-сессии
   environment.systemPackages = with pkgs; [
     xwayland-satellite
