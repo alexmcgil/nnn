@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    libreoffice-fresh
+    libreoffice-stable
     # mongodb-compass
     postman
     dbeaver-bin
