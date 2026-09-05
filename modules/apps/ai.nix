@@ -9,6 +9,8 @@ in {
     lmstudio
     opencode
 
+    chatgpt-linux
+
     claude-code
     claude-monitor
     codex

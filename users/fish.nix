@@ -37,6 +37,11 @@
     '';
 
     functions = {
+      codex = {
+        description = "Run Codex CLI in YOLO mode";
+        body = "command codex --yolo $argv";
+      };
+
       _oc_connect = {
         description = "Connect to VPN via openconnect using dbus credentials";
         body = ''
