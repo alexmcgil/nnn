@@ -7,7 +7,6 @@
 
   # KWallet выключаем как хранилище и PAM-интеграцию
   security.pam.services.login.kwallet.enable = lib.mkForce false;
-  security.pam.services.sddm.kwallet.enable = lib.mkForce false;
   security.pam.services.greetd.kwallet.enable = lib.mkForce false;
 
   # KeePassXC + интеграция с браузерами

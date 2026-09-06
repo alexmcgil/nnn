@@ -1,13 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  # KDE Plasma 6 с SDDM на Wayland
+  # KDE Plasma 6 остаётся запасной сессией; экран входа настраивается
+  # отдельно в noctalia-greeter.nix.
   services.desktopManager.plasma6.enable = true;
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
 
   # Убрать kwallet, elisa, khelpcenter из Plasma
   environment.plasma6.excludePackages = with pkgs.kdePackages; [

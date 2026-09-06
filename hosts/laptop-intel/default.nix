@@ -16,6 +16,7 @@
     ../../modules/hardware/intel-cpu.nix
     ../../modules/hardware/intel-gpu.nix
 
+    ../../modules/desktop/noctalia-greeter.nix
     ../../modules/desktop/plasma.nix
     ../../modules/desktop/niri.nix
 

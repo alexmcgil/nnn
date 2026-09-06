@@ -31,8 +31,9 @@
 │   │   ├── nvidia.nix        # NVIDIA Wayland-friendly
 │   │   └── intel-gpu.nix
 │   ├── desktop/
-│   │   ├── plasma.nix        # KDE Plasma 6 + SDDM Wayland
-│   │   └── niri.nix          # niri + xdg-portals + quickshell
+│   │   ├── noctalia-greeter.nix # Noctalia Greeter + greetd
+│   │   ├── plasma.nix        # запасная сессия KDE Plasma 6
+│   │   └── niri.nix          # niri + xdg-portals + Noctalia
 │   ├── apps/
 │   │   ├── browsers.nix      # zen-browser, chromium
 │   │   ├── messengers.nix    # telegram, discord, thunderbird

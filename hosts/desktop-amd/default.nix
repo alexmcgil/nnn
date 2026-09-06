@@ -17,6 +17,7 @@
     ../../modules/hardware/amd-cpu.nix
     ../../modules/hardware/nvidia.nix
 
+    ../../modules/desktop/noctalia-greeter.nix
     ../../modules/desktop/plasma.nix
     ../../modules/desktop/niri.nix
 
