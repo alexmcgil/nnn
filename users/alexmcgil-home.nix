@@ -110,7 +110,6 @@
   
   # ---- Noctalia ----
   imports = [
-    inputs.peon-ping.homeManagerModules.default
     inputs.plasma-manager.homeModules.plasma-manager
     inputs.xmcl.homeModules.xmcl
     ./fish.nix
@@ -143,12 +142,6 @@
     wl-screenrec
     zbar
   ];
-
-  programs.peon-ping = {
-    enable = true;
-    package = inputs.peon-ping.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    claudeCodeIntegration = true;
-  };
 
   programs.xmcl = {
     enable = true;

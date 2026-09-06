@@ -6,6 +6,9 @@
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
+    # Разрешает alexmcgil применять доверенные настройки flake (например,
+    # Cachix-ключи) без предупреждений от nix-daemon. root NixOS добавляет сам.
+    trusted-users = [ "alexmcgil" ];
 
     substituters = [
       "https://cache.nixos.org"
