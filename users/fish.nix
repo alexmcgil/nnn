@@ -1,6 +1,11 @@
 { ... }:
 
 {
+  home.file.".codex-personal/config.toml".text = ''
+    # Храним токены в отдельном CODEX_HOME, не используя общий системный keyring.
+    cli_auth_credentials_store = "file"
+  '';
+
   # ---- Fish shell ----
   programs.fish = {
     enable = true;
@@ -40,6 +45,15 @@
       codex = {
         description = "Run Codex CLI in YOLO mode";
         body = "command codex --yolo $argv";
+      };
+
+      # Отдельный CODEX_HOME изолирует авторизацию Pro от рабочего Business-профиля.
+      codexp = {
+        description = "Run Codex CLI with a personal account";
+        body = ''
+          set -lx CODEX_HOME "$HOME/.codex-personal"
+          command codex --yolo $argv
+        '';
       };
 
       _oc_connect = {
