@@ -21,7 +21,7 @@
     prisma-engines
 
     glab
-    # github-cli
+    github-cli
     warp-terminal
     lens
     kubectl
