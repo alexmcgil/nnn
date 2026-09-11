@@ -1,10 +1,8 @@
 { ... }:
 
 {
-  home.file.".codex-personal/config.toml".text = ''
-    # Храним токены в отдельном CODEX_HOME, не используя общий системный keyring.
-    cli_auth_credentials_store = "file"
-  '';
+  # Создаём каталог профиля, но оставляем config.toml изменяемым для настроек Codex.
+  home.file.".codex-personal/.keep".text = "";
 
   # ---- Fish shell ----
   programs.fish = {
@@ -52,7 +50,7 @@
         description = "Run Codex CLI with a personal account";
         body = ''
           set -lx CODEX_HOME "$HOME/.codex-personal"
-          command codex --yolo $argv
+          command codex --yolo --config 'cli_auth_credentials_store="file"' $argv
         '';
       };
 
