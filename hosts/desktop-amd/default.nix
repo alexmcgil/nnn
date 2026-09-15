@@ -43,6 +43,7 @@
     ../../modules/services/sunshine.nix
     ../../modules/services/fwupd.nix
     ../../modules/services/openrgb.nix
+    ../../modules/services/mcsmanager.nix
     ../../modules/services/zapret.nix
     ../../modules/services/vr-streaming.nix
 
