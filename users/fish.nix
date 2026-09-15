@@ -65,7 +65,8 @@
           set pass (secret-tool lookup Title ipa)
           set totp (secret-tool search --all Title ipa 2>&1 | grep TOTP | sd "attribute.TOTP = " "")
           printf "%s\n%s\n" $pass $totp | sudo openconnect $server \
-              -u $user --authgroup $group --passwd-on-stdin --no-dtls
+              -u $user --authgroup $group --passwd-on-stdin --no-dtls \
+              --script /etc/openconnect/vpnc-script
         '';
       };
 

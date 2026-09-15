@@ -14,6 +14,45 @@
 
   services.resolved.enable = true;
 
+  # Корпоративный VPN присылает Caila как точечный split-route через tun0,
+  # откуда Docker-контейнеры не могут установить соединение. Убираем маршрут
+  # до штатного vpnc-script: Caila остаётся на обычном default route.
+  environment.etc."openconnect/vpnc-script".source = pkgs.writeShellScript "openconnect-vpnc-script" ''
+    set -euo pipefail
+
+    readonly excluded_address="158.160.128.184"
+    readonly split_count="''${CISCO_SPLIT_INC:-0}"
+    write_index=0
+
+    for ((read_index = 0; read_index < split_count; read_index++)); do
+      address_variable="CISCO_SPLIT_INC_''${read_index}_ADDR"
+      mask_length_variable="CISCO_SPLIT_INC_''${read_index}_MASKLEN"
+      address="''${!address_variable:-}"
+      mask_length="''${!mask_length_variable:-}"
+
+      if [[ "$address" == "$excluded_address" && "$mask_length" == "32" ]]; then
+        continue
+      fi
+
+      for field in ADDR MASK MASKLEN PROTOCOL SPORT DPORT; do
+        source_variable="CISCO_SPLIT_INC_''${read_index}_''${field}"
+        target_variable="CISCO_SPLIT_INC_''${write_index}_''${field}"
+
+        if [[ -v "$source_variable" ]]; then
+          printf -v "$target_variable" '%s' "''${!source_variable}"
+          export "$target_variable"
+        else
+          unset "$target_variable"
+        fi
+      done
+
+      ((write_index += 1))
+    done
+
+    export CISCO_SPLIT_INC="$write_index"
+    exec ${pkgs.vpnc-scripts}/bin/vpnc-script "$@"
+  '';
+
   # Имя таблицы жёстко задано в Linux-клиенте Amnezia. На обычных дистрибутивах
   # его добавляет установщик, а в NixOS /etc декларативный, поэтому регистрируем
   # таблицу здесь. Она нужна для fwmark 0x3211 в split tunnelling.
