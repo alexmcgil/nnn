@@ -15,6 +15,8 @@ in {
     claude-monitor
     codex
     codex-acp
+    antigravity-cli
+    antigravity-acp
 
     paseoPackages.desktop
     paseoPackages.default

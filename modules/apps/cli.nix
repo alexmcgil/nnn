@@ -47,6 +47,7 @@
 
     # Системная информация
     fastfetch
+    fetch
     inxi
     pciutils
     usbutils
