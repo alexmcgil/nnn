@@ -33,6 +33,9 @@
     # Language servers
     nil
     nixd
+    typescript-language-server
+    vscode-langservers-extracted
+    yaml-language-server
 
     # Компиляторы и системы сборки
     # gcc
@@ -45,6 +48,10 @@
     fnm
     pnpm
     bun
+
+    # Локальная разработка jay-flow
+    poppler-utils # pdftocairo для PDF-превью
+    cloudflared   # туннель к MinIO для AI-worker
 
     # Платформы
     uv
