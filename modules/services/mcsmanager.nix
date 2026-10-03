@@ -84,13 +84,13 @@ let
       id = "9b20b3878fa54a14b9a7c1f0c4710005";
       name = "Nomifactory";
       path = "/home/alexmcgil/servers/nomi";
-      command = "java8 -server -Xms2048M -Xmx2048M -jar forge-1.12.2-14.23.5.2860.jar nogui";
+      command = "java8 -server -Xms8G -Xmx16G -jar forge-1.12.2-14.23.5.2860.jar nogui";
     }
     {
       id = "9b20b3878fa54a14b9a7c1f0c4710006";
       name = "GT New Horizons 2.8.4";
       path = "/home/alexmcgil/servers/gtnh";
-      command = "java21 -Xms6G -Xmx6G -Dfml.readTimeout=180 @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui";
+      command = "java21 -Xms8G -Xmx16G -Dfml.readTimeout=180 @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui";
     }
     {
       id = "9b20b3878fa54a14b9a7c1f0c4710007";
