@@ -446,7 +446,7 @@
 
         focus-ring = {
           # Цвета переопределяются noctalia через шаблон niri (Tokyo Night)
-          width = 4;
+          width = 1;
           active   = { color = "#7aa2f7"; };
           inactive = { color = "#1a1b26"; };
           urgent   = { color = "#f7768e"; };
@@ -454,7 +454,7 @@
 
         border = {
           enable = true;
-          width = 2;
+          width = 1;
           active   = { color = "#7aa2f7"; };
           inactive = { color = "#1a1b26"; };
           urgent   = { color = "#f7768e"; };
