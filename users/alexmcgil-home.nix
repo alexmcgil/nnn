@@ -481,7 +481,6 @@
         { command = [ "zen-beta" ]; }
         { command = [ "obsidian" ]; }
         { command = [ "Telegram" ]; }
-        { command = [ "feishin" ]; }
       ];
 
       hotkey-overlay.skip-at-startup = true;
