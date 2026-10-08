@@ -9,6 +9,7 @@
     obsidian
     thunar
     localsend
+    (callPackage ../../packages/xdman.nix { })
     kdePackages.filelight
 
     qmk

@@ -39,7 +39,6 @@
     XDG_MENU_PREFIX = "plasma-";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
     # Активирует Wayland-режим во всех Electron-приложениях из nixpkgs
     # (teams-for-linux, obsidian и др. проверяют эту переменную и добавляют --ozone-platform=wayland)
     NIXOS_OZONE_WL = "1";
