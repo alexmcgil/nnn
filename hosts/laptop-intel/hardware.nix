@@ -5,10 +5,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # TODO: заполнить при установке — запустить nixos-generate-config
-  # и скопировать нужные модули из сгенерированного hardware-configuration.nix
+  # Lenovo IdeaPad Slim 3 15IRH8 (83EM), i7-13620H, Intel UHD, 16 ГБ RAM.
+  # Проверено из CachyOS: NVMe Micron 512 ГБ, Intel CNVi Wi-Fi,
+  # I2C HID тачпад, Realtek RTS522A. NVIDIA/отдельного SATA-диска нет.
+  # Перед установкой сверить с nixos-generate-config из NixOS ISO:
+  # это предварительный профиль, загрузка NixOS на железе ещё не проверена.
   boot.initrd.availableKernelModules = [
-    "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod"
+    "nvme" "xhci_pci" "usb_storage" "sd_mod"
+    "i2c_hid_acpi" "hid_multitouch"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];

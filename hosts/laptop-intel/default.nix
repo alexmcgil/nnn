@@ -21,6 +21,7 @@
     ../../modules/desktop/niri.nix
 
     ../../modules/apps/cli.nix
+    # Input open-design отключён в flake.nix; модуль требует его для вычисления.
     # ../../modules/apps/open-design.nix
     ../../modules/apps/browsers.nix
     ../../modules/apps/messengers.nix
@@ -45,6 +46,9 @@
   ];
 
   networking.hostName = "laptop-intel";
+
+  # Здесь только Intel UHD; общий niri-модуль задаёт NVIDIA VA-API для desktop-amd.
+  environment.sessionVariables.LIBVA_DRIVER_NAME = lib.mkForce "iHD";
 
   system.stateVersion = "26.05";
 }

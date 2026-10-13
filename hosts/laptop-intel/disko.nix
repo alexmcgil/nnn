@@ -1,11 +1,10 @@
 { ... }:
 
-# TODO: заполнить device/UUID при установке на ноутбук
-# Пример структуры — скопировано из hosts/desktop-amd/disko.nix
-# Перед установкой заменить:
-#   - disk.system.device: путь к системному диску (lsblk --output NAME,MODEL,SERIAL)
-#   - fileSystems."/home": UUID из blkid
-#   - fileSystems."/mnt/media": если нужен, иначе удалить
+# Схема БУДУЩЕЙ ЧИСТОЙ установки, не описание текущей CachyOS.
+# Сейчас один Micron NVMe 512 ГБ: ESP 300 МиБ + общий btrfs для / и /home.
+# Форматирование этой схемой уничтожит CachyOS вместе с домашними файлами.
+# Путь оставлен заглушкой до выбора способа миграции и проверки резервной копии.
+# При установке выбрать стабильный /dev/disk/by-id/... из установочной среды.
 
 {
   disko.devices = {
@@ -42,6 +41,11 @@
                       "discard=async"
                       "subvol=@"
                     ];
+                  };
+                  # Домашний каталог на том же SSD, отдельного диска нет.
+                  "@home" = {
+                    mountpoint = "/home";
+                    mountOptions = [ "compress=zstd:3" "noatime" "ssd" "discard=async" ];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
@@ -80,20 +84,6 @@
         };
       };
     };
-  };
-
-  # TODO: заполнить UUID для /home при установке
-  # blkid /dev/<home-partition>
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/REPLACE_WITH_HOME_UUID";
-    fsType = "btrfs";
-    options = [
-      "subvol=@home"
-      "compress=zstd:3"
-      "noatime"
-      "ssd"
-      "discard=async"
-    ];
   };
 
   fileSystems."/tmp" = {
