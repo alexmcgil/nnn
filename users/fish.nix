@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  imports = [ ./rebuild-commands.nix ];
   # Создаём каталог профиля, но оставляем config.toml изменяемым для настроек Codex.
   home.file.".codex-personal/.keep".text = "";
 
@@ -85,30 +86,6 @@
         body = "_oc_connect p";
       };
 
-      nrs = {
-        description = "NixOS rebuild switch";
-        body = "sudo nixos-rebuild switch --flake ~/nixos#(hostname)";
-      };
-
-      nrsu = {
-        description = "Update flake inputs, commit lock, rebuild & switch";
-        body = ''
-          set -l flake_dir ~/nixos
-
-          nix flake update --flake $flake_dir
-          or return
-
-          pushd $flake_dir
-          git add flake.lock
-          # коммитим только если есть что коммитить
-          if not git diff --cached --quiet -- flake.lock
-              git commit -m "routine: update flake.lock"
-          end
-          popd
-
-          sudo nixos-rebuild switch --flake $flake_dir#(hostname)
-        '';
-      };
     };
   };
 

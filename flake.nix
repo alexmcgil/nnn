@@ -86,6 +86,16 @@
         };
     in
     {
+      # Пользовательское окружение CachyOS; системные NixOS-модули не импортируем.
+      homeConfigurations."alexmcgil@cachyos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ ./users/cachyos-home.nix ];
+      };
+
       nixosConfigurations = {
         desktop-amd = mkHost {
           system = "x86_64-linux";
