@@ -28,12 +28,17 @@
 
     # Редакторы
     zed-editor
-    jetbrains.idea
+    # jetbrains.idea
 
     # Language servers
     nil
     nixd
-    typescript-language-server
+    # Временный фикс pnpm-хэша 6.0.2 из upstream; убрать после исправления nixos-unstable.
+    (typescript-language-server.overrideAttrs (old: {
+      pnpmDeps = old.pnpmDeps.overrideAttrs {
+        outputHash = "sha256-xR/EF60lVBsITKgH7wCM2wHM46PFQevD51KfCENSUH4=";
+      };
+    }))
     vscode-langservers-extracted
     yaml-language-server
 
