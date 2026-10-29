@@ -22,6 +22,7 @@
     ../../modules/desktop/niri.nix
 
     ../../modules/apps/ai.nix
+    ../../modules/apps/aivpn.nix
     # ../../modules/apps/open-design.nix
     ../../modules/apps/cli.nix
     ../../modules/apps/browsers.nix
