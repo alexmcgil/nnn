@@ -126,7 +126,15 @@
 
       wallpaper = {
         enabled = true;
-        directory = "/home/alexmcgil/Pictures/Wallpapers";
+        directory = "/home/alexmcgil/Pictures/Wallpapers/16x9";
+        per_monitor_directories = true;
+
+        # Модели стабильны, в отличие от DP/HDMI-разъёмов после перезагрузки.
+        monitor = {
+          CU34G4.directory = "/home/alexmcgil/Pictures/Wallpapers/21x9";
+          LS24D300G.directory = "/home/alexmcgil/Pictures/Wallpapers/16x9";
+        };
+
         automation.enabled = true;
       };
 
