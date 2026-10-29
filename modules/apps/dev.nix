@@ -52,7 +52,13 @@
 
     fnm
     pnpm
-    bun
+    # Bun из nixpkgs не использует nix-ld при загрузке нативных модулей вроде sharp.
+    (bun.overrideAttrs (old: {
+      postFixup = (old.postFixup or "") + ''
+        wrapProgram $out/bin/bun \
+          --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc.lib ]}"
+      '';
+    }))
 
     # Локальная разработка jay-flow
     poppler-utils # pdftocairo для PDF-превью
