@@ -1,5 +1,15 @@
 { config, lib, pkgs, ... }:
 
+let
+  amnezia-vpn = pkgs.amnezia-vpn.overrideAttrs (old: {
+    # Клиент 5.0.3 читает всю таблицу маршрутов в 8 KiB и теряет шлюз при большом числе Docker-интерфейсов.
+    # shortcut: буфер ограничен 256 KiB, заменить на upstream-исправление при его выпуске.
+    postPatch = old.postPatch + ''
+      substituteInPlace client/core/utils/networkUtilities.cpp \
+        --replace-fail 'constexpr int BUFFER_SIZE = 8192;' 'constexpr int BUFFER_SIZE = 262144;'
+    '';
+  });
+in
 {
   networking.networkmanager = {
     enable = true;
@@ -68,7 +78,7 @@
 
   # wireguard-tools и amneziawg-tools нужны для wg/wg-quick и awg/awg-quick.
   environment.systemPackages = [
-    pkgs.amnezia-vpn
+    amnezia-vpn
     pkgs.amneziawg-tools
     pkgs.wireguard-tools
   ];
@@ -92,7 +102,7 @@
     ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+      ExecStart = "${amnezia-vpn}/bin/AmneziaVPN-service";
       Restart = "on-failure";
       RestartSec = "1s";
     };
