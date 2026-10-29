@@ -35,6 +35,7 @@
 │   │   ├── plasma.nix        # запасная сессия KDE Plasma 6
 │   │   └── niri.nix          # niri + xdg-portals + Noctalia
 │   ├── apps/
+│   │   ├── aivpn.nix         # AIVPN GUI + CLI, сетевые права через NixOS
 │   │   ├── browsers.nix      # zen-browser, chromium
 │   │   ├── messengers.nix    # telegram, discord, thunderbird
 │   │   ├── dev.nix           # zed, idea, gcc, nodejs, rust, go…

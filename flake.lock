@@ -22,6 +22,22 @@
         "type": "github"
       }
     },
+    "aivpn": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793202383,
+        "narHash": "sha256-0jquQvGlkyhj3YcLMBMy7aMDfYQrP407uKExZiEpDIA=",
+        "owner": "infosave2007",
+        "repo": "aivpn",
+        "rev": "c5262587adb2b6b81d9e8fcdee453598685e3fb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "infosave2007",
+        "repo": "aivpn",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -267,6 +283,7 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
+        "aivpn": "aivpn",
         "disko": "disko",
         "home-manager": "home-manager",
         "niri": "niri",

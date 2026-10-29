@@ -7,6 +7,12 @@
 
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
 
+    # У апстрима нет flake; исходники GUI и CLI фиксируем вместе в lock-файле.
+    aivpn = {
+      url = "github:infosave2007/aivpn";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -86,6 +92,10 @@
         };
     in
     {
+      packages.x86_64-linux.aivpn = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/aivpn {
+        src = inputs.aivpn;
+      };
+
       # Пользовательское окружение CachyOS; системные NixOS-модули не импортируем.
       homeConfigurations."alexmcgil@cachyos" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
