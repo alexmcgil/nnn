@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   networking.networkmanager = {
@@ -60,13 +60,6 @@
     201 amnvpnrt
   '';
 
-  # В Linux-клиенте 4.8.21 shell жёстко задан как /bin/bash. NixOS штатно
-  # предоставляет только /bin/sh, поэтому QProcess не может запустить ни одну
-  # команду firewall (код -2), даже когда bash присутствует в PATH сервиса.
-  systemd.tmpfiles.rules = [
-    "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
-  ];
-
   # Обычный WireGuard встроен в ядро, а AmneziaWG требует отдельного модуля.
   # Одних amneziawg-tools недостаточно: без модуля GUI создаёт интерфейс, но не
   # может применить AWG-параметры Jc/Jmin/Jmax и соединение остаётся без handshake.
@@ -75,10 +68,7 @@
 
   # wireguard-tools и amneziawg-tools нужны для wg/wg-quick и awg/awg-quick.
   environment.systemPackages = [
-    # Версии 4.8.15/4.8.21 из новых каналов собираются с Qt 6.11 и не могут
-    # открыть мастер импорта из-за QML-ошибки recommendedText. Стабильная пара
-    # AmneziaVPN 4.8.6 + Qt 6.9 из 25.05 этой несовместимости не имеет.
-    pkgs-stable.amnezia-vpn
+    pkgs.amnezia-vpn
     pkgs.amneziawg-tools
     pkgs.wireguard-tools
   ];
@@ -102,7 +92,7 @@
     ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs-stable.amnezia-vpn}/bin/AmneziaVPN-service";
+      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
       Restart = "on-failure";
       RestartSec = "1s";
     };

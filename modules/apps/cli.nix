@@ -83,9 +83,6 @@
     # Эффекты терминала
     cava            # аудио-визуализатор для noctalia (template cava)
 
-    # Minio client
-    minio-client
-
     # Redis client (redis-cli)
     redis
   ];

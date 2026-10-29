@@ -1,7 +1,6 @@
-{ config, lib, pkgs, pkgs-stable, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
-  chatgpt-linux = pkgs.callPackage ../../packages/chatgpt-linux.nix { };
   paseoPackages = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system};
   paseo-desktop = paseoPackages.desktop.overrideAttrs (old: {
     # trace-daemon.mjs не замечает require.resolve("@getpaseo/server") и не
@@ -44,7 +43,7 @@ in {
     lmstudio
     opencode
 
-    chatgpt-linux
+    chatgpt
 
     claude-code
     claude-monitor
