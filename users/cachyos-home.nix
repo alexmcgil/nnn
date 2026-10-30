@@ -13,6 +13,8 @@ in
   home.homeDirectory = "/home/alexmcgil";
   home.stateVersion = "26.05";
   programs.home-manager.enable = true;
+  # Системный wg-quick читает root-owned копию; установка описана в extra/wgp2p/desktop.md.
+  xdg.configFile."wgp2p/wgp2p.conf".source = ../extra/wgp2p/laptop-intel.conf;
   nix.package = pkgs.nix;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

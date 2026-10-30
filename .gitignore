@@ -7,3 +7,11 @@ result-*
 .idea
 
 docs/superpowers/plans/
+
+# Секреты WireGuard и состояние старого VPS не должны попадать в публичный репозиторий.
+secrets/
+*.key
+*.psk
+extra/wgp2p/keys/
+extra/wgp2p/peers/
+extra/wgp2p/wgp2p.conf
