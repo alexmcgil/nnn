@@ -237,26 +237,6 @@
         "type": "github"
       }
     },
-    "paseo": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1793276489,
-        "narHash": "sha256-yY+0cmNbqgfMT3LIHDvMGKhaYlvJDWPFCDDTq/dXhXA=",
-        "owner": "getpaseo",
-        "repo": "paseo",
-        "rev": "1aef1ec6625f2c32cbd62cfbeb02cffb43a275d2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "getpaseo",
-        "repo": "paseo",
-        "type": "github"
-      }
-    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -289,7 +269,6 @@
         "niri": "niri",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
-        "paseo": "paseo",
         "plasma-manager": "plasma-manager",
         "xmcl": "xmcl",
         "zapret-discord-youtube": "zapret-discord-youtube",

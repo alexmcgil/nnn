@@ -1,16 +1,6 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  paseoPackages = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system};
-  paseo-desktop = paseoPackages.desktop.overrideAttrs (old: {
-    # trace-daemon.mjs не замечает require.resolve("@getpaseo/server") и не
-    # копирует корневой export, без которого desktop не находит daemon.
-    postInstall = (old.postInstall or "") + ''
-      install -Dm644 packages/server/dist/server/server/exports.js \
-        "$out/share/paseo-desktop/packages/server/dist/server/server/exports.js"
-    '';
-  });
-
   # /nix/store неизменяем, поэтому Open AG Patcher нельзя запускать поверх
   # системного agy. Применяем его x86-64 сигнатуру при сборке пакета.
   antigravity-cli-patched = pkgs.antigravity-cli.overrideAttrs (old: {
@@ -53,7 +43,7 @@ in {
     antigravity-acp
 
     paseo-desktop
-    paseoPackages.default
+    paseo
 
     rtk
 
