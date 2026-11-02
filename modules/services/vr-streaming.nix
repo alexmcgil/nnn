@@ -23,7 +23,7 @@
 
   # 1. Точка доступа на hostapd
   services.hostapd = {
-    enable = true;
+    enable = false;
     radios.wlp9s0 = {
       band = "5g";
       channel = 36;          # без DFS; 80 МГц занимает 36–48
