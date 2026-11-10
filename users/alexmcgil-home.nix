@@ -173,6 +173,18 @@
     mimeType = [ "x-scheme-handler/lmstudio" ];
   };
 
+  # Клиент подключается к Docker Gateway; локальный Gateway в приложении не запускаем.
+  xdg.desktopEntries."openclaw" = {
+    name = "OpenClaw";
+    exec = "env OPENCLAW_CONFIG_PATH=/home/alexmcgil/.config/openclaw-desktop/openclaw.json /home/alexmcgil/.local/opt/openclaw/OpenClaw.AppImage";
+    terminal = false;
+    type = "Application";
+    icon = "/home/alexmcgil/.local/opt/openclaw/openclaw.png";
+    comment = "Local and remote OpenClaw Gateway client";
+    categories = [ "Utility" "Network" ];
+    mimeType = [ "x-scheme-handler/openclaw" ];
+  };
+
   # ---- home-manager self-management ----
   programs.home-manager.enable = true;
 }

@@ -29,6 +29,15 @@ let
   });
 in {
 
+  # Официальный Linux-клиент OpenClaw распространяется как AppImage.
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [ pkgs.libgpg-error ];
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     lmstudio
     # Временный фикс node_modules-хэша 2.2.5 из upstream; убрать после исправления nixos-unstable.

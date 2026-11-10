@@ -1,0 +1,9 @@
+# Скопировать в compose.readonly.yaml и перечислять только явно разрешённые пути.
+# Каждый mount нужен обоим сервисам, чтобы CLI видел ту же конфигурацию.
+services:
+  openclaw-gateway:
+    volumes:
+      - /absolute/allowed/path:/workspace/readonly/example:ro
+  openclaw-cli:
+    volumes:
+      - /absolute/allowed/path:/workspace/readonly/example:ro

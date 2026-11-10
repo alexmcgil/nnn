@@ -1,0 +1,57 @@
+name: openclaw
+
+x-openclaw-common: &openclaw-common
+  image: ghcr.io/openclaw/openclaw:2026.11.1@sha256:db0e0809fbd0df375445e9eea8daf2a278ac7ac3a263fa6bfce8fb344ad3ad77
+  env_file:
+    - path: .env
+      required: true
+  environment:
+    HOME: /home/node
+    OPENCLAW_HOME: /home/node
+    OPENCLAW_STATE_DIR: /home/node/.openclaw
+    OPENCLAW_CONFIG_PATH: /home/node/.openclaw/openclaw.json
+    OPENCLAW_CONFIG_DIR: /home/node/.openclaw
+    OPENCLAW_WORKSPACE_DIR: /workspace
+    OPENCLAW_GATEWAY_PORT: "18789"
+    OPENCLAW_GATEWAY_TOKEN: ${OPENCLAW_GATEWAY_TOKEN:?set OPENCLAW_GATEWAY_TOKEN in .env}
+    LM_API_TOKEN: ${LM_API_TOKEN:-}
+    OPENCLAW_ALLOW_INSECURE_PRIVATE_WS: "1"
+    TZ: Europe/Moscow
+  volumes:
+    - ${HOME}/AI/openclaw-state:/home/node/.openclaw
+    - ${HOME}/AI/openclaw-workspace:/workspace
+    - ${HOME}/AI/openclaw-auth:/home/node/.config/openclaw
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+  init: true
+
+services:
+  openclaw-gateway:
+    <<: *openclaw-common
+    container_name: openclaw-gateway
+    restart: unless-stopped
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    ports:
+      - 18789:18789
+    command: ["node", "dist/index.js", "gateway", "--bind", "lan", "--port", "18789"]
+    healthcheck:
+      test: ["CMD", "node", "dist/docker-healthcheck.js"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  openclaw-cli:
+    <<: *openclaw-common
+    network_mode: service:openclaw-gateway
+    restart: "no"
+    stdin_open: true
+    tty: true
+    entrypoint: ["node", "dist/index.js"]
+    depends_on:
+      openclaw-gateway:
+        condition: service_healthy
+        restart: true
