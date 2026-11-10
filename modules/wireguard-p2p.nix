@@ -33,9 +33,14 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+      # NetworkManager может объявить сеть готовой до появления eno1.
+      # Повторяем настройку маршрута, когда домашний интерфейс появится.
+      Restart = "on-failure";
+      RestartSec = "5s";
     };
     script = ''
       ip route replace default via 192.168.0.1 dev eno1 table 51830
+      ip rule del priority 100 fwmark 51830 lookup 51830 2>/dev/null || true
       ip rule add priority 100 fwmark 51830 lookup 51830
     '';
     preStop = ''
@@ -44,9 +49,10 @@
     '';
   };
 
-  # Сам интерфейс создаётся до network.target; маршрут нужен только к запуску пира.
+  # Ошибка uplink не должна мешать добавлению пира: иначе после восстановления
+  # маршрута WireGuard останется без пиров до ручного запуска сервиса.
   systemd.services.wireguard-wgp2p-peer-laptop-intel = {
-    requires = [ "wgp2p-uplink.service" ];
+    wants = [ "wgp2p-uplink.service" ];
     after = [ "wgp2p-uplink.service" ];
   };
 
