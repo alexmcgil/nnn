@@ -105,7 +105,10 @@
   };
 
   environment.systemPackages = with pkgs; [
-    alvr
+    # zstd-sys ищет libzstd через pkg-config при сборке.
+    (alvr.overrideAttrs (old: {
+      buildInputs = old.buildInputs ++ [ zstd ];
+    }))
     monado
     android-tools   # adb для установки клиента ALVR на Quest
   ];

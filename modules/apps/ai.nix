@@ -29,6 +29,24 @@ let
   });
 in {
 
+  # Rust-хук nixpkgs требует системные библиотеки для *-sys крейтов Codex.
+  nixpkgs.overlays = [
+    (final: prev: {
+      codex = prev.codex.overrideAttrs (old: {
+        buildInputs = old.buildInputs ++ [
+          final.aws-lc
+          final.zstd
+          final.oniguruma
+          final.sqlite
+          final.zlib
+        ];
+      });
+      tectonic-unwrapped = prev.tectonic-unwrapped.overrideAttrs (old: {
+        buildInputs = old.buildInputs ++ [ final.aws-lc final.zlib ];
+      });
+    })
+  ];
+
   # Официальный Linux-клиент OpenClaw распространяется как AppImage.
   programs.appimage = {
     enable = true;

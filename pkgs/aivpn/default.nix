@@ -1,5 +1,5 @@
 { lib, stdenv, rustPlatform, src, pkg-config, makeWrapper, copyDesktopItems, makeDesktopItem
-, openssl, wayland, libxkbcommon, vulkan-loader, libGL, libx11, libxcursor, libxi
+, openssl, aws-lc, wayland, libxkbcommon, vulkan-loader, libGL, libx11, libxcursor, libxi
 , iproute2, iptables, nftables, coreutils, bash
 }:
 
@@ -10,7 +10,8 @@ rustPlatform.buildRustPackage {
   cargoHash = "sha256-+eoSJdvgwwe2CCijKXIJMdHbqFczW9nN1pvuO167bb4=";
 
   nativeBuildInputs = [ pkg-config makeWrapper copyDesktopItems ];
-  buildInputs = [ openssl ];
+  # Rust-хук nixpkgs требует системную AWS-LC для aws-lc-sys.
+  buildInputs = [ openssl aws-lc ];
   cargoBuildFlags = [ "-p" "aivpn-linux" "-p" "aivpn-client" ];
   buildFeatures = [ "aivpn-client/ssh-install" ];
   cargoTestFlags = [ "-p" "aivpn-client" "--bin" "aivpn-ip-helper" ];
