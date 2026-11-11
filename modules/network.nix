@@ -88,9 +88,8 @@ in
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     # Daemon запускает эти программы по коротким именам для firewall, policy
-    # routing и split tunnelling. В PATH вручную объявленного systemd-сервиса
-    # они сами не попадают; QProcess возвращает -2 и GUI молча оставляет только
-    # два full-tunnel маршрута /1, из-за чего весь трафик таймаутится.
+    # routing и split tunnelling. Amnezia 5.0.3 также вызывает ip/sysctl через
+    # sudo даже из root-сервиса. Без них QProcess возвращает -2.
     path = with pkgs; [
       bash
       coreutils
@@ -99,6 +98,7 @@ in
       gnugrep
       iproute2
       iptables
+      sudo
     ];
     serviceConfig = {
       Type = "simple";
