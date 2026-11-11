@@ -45,7 +45,11 @@
     # ninja
     # pkg-config
 
-    fnm
+    # zstd-sys в fnm ищет libzstd через pkg-config при сборке.
+    (fnm.overrideAttrs (old: {
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkg-config ];
+      buildInputs = (old.buildInputs or [ ]) ++ [ zstd ];
+    }))
     pnpm
     # Bun из nixpkgs не использует nix-ld при загрузке нативных модулей вроде sharp.
     (bun.overrideAttrs (old: {
