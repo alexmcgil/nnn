@@ -4,14 +4,11 @@
 
 | ID | Назначение | Код |
 | --- | --- | --- |
-| AI-CODEX | Системные библиотеки для Rust-хука Codex | `modules/apps/ai.nix` |
 | AI-TECTONIC | AWS-LC и zlib для Tectonic | `modules/apps/ai.nix` |
-| AI-OPENCODE | Исправленный хэш node_modules OpenCode | `modules/apps/ai.nix` |
 | DEV-FNM | zstd и pkg-config для сборки fnm | `modules/apps/dev.nix` |
 | DEV-BUN | Поиск libstdc++ нативными модулями Bun | `modules/apps/dev.nix` |
 | APP-LOCALSEND-ZLIB | libz.so.1 для запуска LocalSend 1.18.0 | `modules/apps/productivity.nix` |
 | GAME-LUTRIS | Lutris из stable вместо unstable | `modules/apps/gaming.nix` |
-| GAME-BOTTLES | Bottles из stable вместо unstable | `modules/apps/gaming.nix` |
 | STEAM-UI-STARTUP | Локальный патч запуска интерфейса клиента Valve 1794424036 | `~/.local/share/Steam/steamui/sp.js`; указатель в `modules/apps/steam.nix`; [описание и откат](#steam-ui-startup) |
 | VIRT-CEPH | Отключение Ceph для сборки QEMU | `modules/apps/virt.nix` |
 | NIRI-PACKAGE | Пакет niri из nixpkgs вместо niri-flake | `modules/desktop/niri.nix` |
