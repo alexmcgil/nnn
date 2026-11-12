@@ -8,7 +8,18 @@
     dbeaver-bin
     obsidian
     thunar
-    localsend
+    # WORKAROUND APP-LOCALSEND-ZLIB: LocalSend 1.18.0 не находит libz.so.1 при запуске.
+    # Upstream issue/PR: неизвестен. Удалить после проверки штатного пакета на целевой машине.
+    (lib.warnIf (lib.getVersion localsend != "1.18.0")
+      "WORKAROUND APP-LOCALSEND-ZLIB: версия LocalSend изменилась; проверьте необходимость обёртки"
+      (symlinkJoin {
+        name = "localsend-with-zlib";
+        paths = [ localsend ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/localsend_app --prefix LD_LIBRARY_PATH : ${zlib}/lib
+        '';
+      }))
     (callPackage ../../packages/xdman.nix { })
     kdePackages.filelight
 

@@ -9,6 +9,7 @@
 | AI-OPENCODE | Исправленный хэш node_modules OpenCode | `modules/apps/ai.nix` |
 | DEV-FNM | zstd и pkg-config для сборки fnm | `modules/apps/dev.nix` |
 | DEV-BUN | Поиск libstdc++ нативными модулями Bun | `modules/apps/dev.nix` |
+| APP-LOCALSEND-ZLIB | libz.so.1 для запуска LocalSend 1.18.0 | `modules/apps/productivity.nix` |
 | GAME-LUTRIS | Lutris из stable вместо unstable | `modules/apps/gaming.nix` |
 | GAME-BOTTLES | Bottles из stable вместо unstable | `modules/apps/gaming.nix` |
 | STEAM-UI-STARTUP | Локальный патч запуска интерфейса клиента Valve 1794424036 | `~/.local/share/Steam/steamui/sp.js`; указатель в `modules/apps/steam.nix`; [описание и откат](#steam-ui-startup) |
