@@ -10,7 +10,8 @@ rustPlatform.buildRustPackage {
   cargoHash = "sha256-+eoSJdvgwwe2CCijKXIJMdHbqFczW9nN1pvuO167bb4=";
 
   nativeBuildInputs = [ pkg-config makeWrapper copyDesktopItems ];
-  # Rust-хук nixpkgs требует системную AWS-LC для aws-lc-sys.
+  # WORKAROUND AIVPN-AWSLC: Rust-хук nixpkgs не находит AWS-LC для aws-lc-sys.
+  # Upstream issue/PR: неизвестен. Удалить, когда исходный пакет собирается без добавки.
   buildInputs = [ openssl aws-lc ];
   cargoBuildFlags = [ "-p" "aivpn-linux" "-p" "aivpn-client" ];
   buildFeatures = [ "aivpn-client/ssh-install" ];

@@ -11,8 +11,16 @@
   programs.anime-game-launcher.enable = true;
 
   environment.systemPackages = with pkgs; [
-    pkgs-stable.lutris
-    pkgs-stable.bottles
+    # WORKAROUND GAME-LUTRIS: версия 0.5.22 из unstable ломалась; используем stable.
+    # Upstream issue/PR: неизвестен. Удалить, когда пакет из unstable снова работает.
+    (lib.warnIf (lib.getVersion lutris != "0.5.22")
+      "WORKAROUND GAME-LUTRIS: версия Lutris в unstable изменилась; проверьте подмену"
+      pkgs-stable.lutris)
+    # WORKAROUND GAME-BOTTLES: версия 67.5 из unstable ломалась; используем stable.
+    # Upstream issue/PR: неизвестен. Удалить, когда пакет из unstable снова работает.
+    (lib.warnIf (lib.getVersion bottles != "67.5")
+      "WORKAROUND GAME-BOTTLES: версия Bottles в unstable изменилась; проверьте подмену"
+      pkgs-stable.bottles)
     heroic             # Heroic Games Launcher (Epic/GOG/Amazon)
     prismlauncher      # Minecraft
     mcpelauncher-ui-qt

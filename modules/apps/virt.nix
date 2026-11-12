@@ -11,7 +11,11 @@
       # RBD (диски ВМ поверх Ceph-кластера) на десктопе не нужен — отключаем
       # cephSupport, остальные фичи qemu_full (smbd, glusterfs, все таргеты)
       # сохраняются. Вернуть override можно, когда nixpkgs починит ceph↔arrow.
-      package = pkgs.qemu_full.override { cephSupport = false; };
+      # WORKAROUND VIRT-CEPH: сбой сборки Ceph обнаружен на 20.2.2.
+      # Upstream issue/PR: неизвестен. Удалить после исправления сборки Ceph с Arrow.
+      package = lib.warnIf (lib.getVersion pkgs.ceph != "20.2.4")
+        "WORKAROUND VIRT-CEPH: версия Ceph изменилась; проверьте необходимость cephSupport = false"
+        (pkgs.qemu_full.override { cephSupport = false; });
       swtpm.enable = true;
     };
   };

@@ -105,10 +105,13 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # zstd-sys ищет libzstd через pkg-config при сборке.
-    (alvr.overrideAttrs (old: {
-      buildInputs = old.buildInputs ++ [ zstd ];
-    }))
+    # WORKAROUND VR-ALVR: ALVR 20.14.1 не находит системный libzstd при сборке.
+    # Upstream issue/PR: неизвестен. Удалить, когда штатный ALVR собирается без добавки.
+    (lib.warnIf (lib.getVersion alvr != "20.14.1")
+      "WORKAROUND VR-ALVR: версия ALVR изменилась; проверьте необходимость buildInputs"
+      (alvr.overrideAttrs (old: {
+        buildInputs = old.buildInputs ++ [ zstd ];
+      })))
     monado
     android-tools   # adb для установки клиента ALVR на Quest
   ];

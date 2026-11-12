@@ -45,19 +45,25 @@
     # ninja
     # pkg-config
 
-    # zstd-sys в fnm ищет libzstd через pkg-config при сборке.
-    (fnm.overrideAttrs (old: {
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkg-config ];
-      buildInputs = (old.buildInputs or [ ]) ++ [ zstd ];
-    }))
+    # WORKAROUND DEV-FNM: fnm 1.39.0 не находит libzstd через pkg-config.
+    # Upstream issue/PR: неизвестен. Удалить, когда штатный fnm собирается без добавок.
+    (lib.warnIf (lib.getVersion fnm != "1.39.0")
+      "WORKAROUND DEV-FNM: версия fnm изменилась; проверьте необходимость buildInputs"
+      (fnm.overrideAttrs (old: {
+        nativeBuildInputs = old.nativeBuildInputs ++ [ pkg-config ];
+        buildInputs = (old.buildInputs or [ ]) ++ [ zstd ];
+      })))
     pnpm
-    # Bun из nixpkgs не использует nix-ld при загрузке нативных модулей вроде sharp.
-    (bun.overrideAttrs (old: {
-      postFixup = (old.postFixup or "") + ''
-        wrapProgram $out/bin/bun \
-          --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc.lib ]}"
-      '';
-    }))
+    # WORKAROUND DEV-BUN: Bun 1.4.4 не находит libstdc++ при загрузке нативных модулей.
+    # Upstream issue/PR: неизвестен. Удалить, когда штатный Bun загружает sharp без обёртки.
+    (lib.warnIf (lib.getVersion bun != "1.4.4")
+      "WORKAROUND DEV-BUN: версия Bun изменилась; проверьте необходимость обёртки"
+      (bun.overrideAttrs (old: {
+        postFixup = (old.postFixup or "") + ''
+          wrapProgram $out/bin/bun \
+            --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc.lib ]}"
+        '';
+      })))
 
     # Локальная разработка jay-flow
     poppler-utils # pdftocairo для PDF-превью

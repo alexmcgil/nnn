@@ -1,14 +1,18 @@
 { config, lib, pkgs, ... }:
 
 let
-  amnezia-vpn = pkgs.amnezia-vpn.overrideAttrs (old: {
-    # Клиент 5.0.3 читает всю таблицу маршрутов в 8 KiB и теряет шлюз при большом числе Docker-интерфейсов.
-    # shortcut: буфер ограничен 256 KiB, заменить на upstream-исправление при его выпуске.
-    postPatch = old.postPatch + ''
-      substituteInPlace client/core/utils/networkUtilities.cpp \
-        --replace-fail 'constexpr int BUFFER_SIZE = 8192;' 'constexpr int BUFFER_SIZE = 262144;'
-    '';
-  });
+  # WORKAROUND VPN-BUFFER: AmneziaVPN 5.0.3 читает таблицу маршрутов в буфер 8 KiB.
+  # Upstream issue/PR: неизвестен. Удалить после исправления размера буфера upstream.
+  amnezia-vpn = lib.warnIf (lib.getVersion pkgs.amnezia-vpn != "5.0.3.0")
+    "WORKAROUND VPN-BUFFER: версия AmneziaVPN изменилась; проверьте необходимость патча буфера"
+    (pkgs.amnezia-vpn.overrideAttrs (old: {
+      # Клиент 5.0.3 читает всю таблицу маршрутов в 8 KiB и теряет шлюз при большом числе Docker-интерфейсов.
+      # shortcut: буфер ограничен 256 KiB, заменить на upstream-исправление при его выпуске.
+      postPatch = old.postPatch + ''
+        substituteInPlace client/core/utils/networkUtilities.cpp \
+          --replace-fail 'constexpr int BUFFER_SIZE = 8192;' 'constexpr int BUFFER_SIZE = 262144;'
+      '';
+    }));
 in
 {
   networking.networkmanager = {
@@ -87,19 +91,23 @@ in
     description = "AmneziaVPN Background Service";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
+    # WORKAROUND VPN-PATH: AmneziaVPN 5.0.3 вызывает ip/sysctl через sudo без абсолютного пути.
+    # Upstream issue/PR: неизвестен. Удалить лишние пути после исправления вызовов upstream.
     # Daemon запускает эти программы по коротким именам для firewall, policy
     # routing и split tunnelling. Amnezia 5.0.3 также вызывает ip/sysctl через
     # sudo даже из root-сервиса. Без них QProcess возвращает -2.
-    path = with pkgs; [
-      bash
-      coreutils
-      findutils
-      gawk
-      gnugrep
-      iproute2
-      iptables
-      sudo
-    ];
+    path = lib.warnIf (lib.getVersion pkgs.amnezia-vpn != "5.0.3.0")
+      "WORKAROUND VPN-PATH: версия AmneziaVPN изменилась; проверьте необходимость путей сервиса"
+      (with pkgs; [
+        bash
+        coreutils
+        findutils
+        gawk
+        gnugrep
+        iproute2
+        iptables
+        sudo
+      ]);
     serviceConfig = {
       Type = "simple";
       ExecStart = "${amnezia-vpn}/bin/AmneziaVPN-service";
