@@ -35,7 +35,7 @@ sudo nixos-rebuild switch --rollback
 
 - **`flake.nix`** — `mkHost` собирает каждый хост. Через `specialArgs` во все модули пробрасываются:
   - `inputs` — все flake-инпуты (используются как `inputs.<name>.packages.${pkgs.stdenv.hostPlatform.system}` или `inputs.<name>.nixosModules.*`).
-  - `pkgs-stable` — nixpkgs 25.05 с `allowUnfree`. Применяется точечно там, где unstable ломает пакет (сейчас `lutris`, `bottles` в `modules/apps/gaming.nix`). Модуль, которому он нужен, объявляет `pkgs-stable` в сигнатуре.
+  - `pkgs-stable` — nixpkgs 26.05 с `allowUnfree`. Применяется точечно там, где unstable ломает пакет (сейчас `lutris`, `bottles` в `modules/apps/gaming.nix`). Модуль, которому он нужен, объявляет `pkgs-stable` в сигнатуре.
   - Общие nixosModules (disko, home-manager, niri, aagl, zapret) подключаются в `mkHost`, поэтому в самих модулях их импортировать не надо.
 - **`hosts/<host>/default.nix`** — единственная точка, перечисляющая `imports` модулей + задаёт `networking.hostName` и `system.stateVersion`. `hardware.nix` (initrd/kernelModules) и `disko.nix` (разметка + fileSystems) — специфика железа.
 - **`modules/`** — по категориям: корневые (`core`, `boot`, `network`, `audio`, …), `hardware/`, `desktop/`, `apps/`, `services/`. Один модуль = одна тема, включается/выключается строкой в host `default.nix`.
