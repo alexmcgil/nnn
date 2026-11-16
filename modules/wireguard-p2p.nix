@@ -18,6 +18,11 @@
         publicKey = "fbpc4FO0RhWJCKFjo5J1TiJzi+IjmhGenpajDd0fCR8=";
         allowedIPs = [ "10.66.66.3/32" ];
       }
+      {
+        name = "windows-1";
+        publicKey = "b7u3ZpULthdBEvrUzOYmz+ie3RSrIfV3ZWUJeV43mhM=";
+        allowedIPs = [ "10.66.66.4/32" ];
+      }
     ];
   };
 
@@ -52,6 +57,10 @@
   # Ошибка uplink не должна мешать добавлению пира: иначе после восстановления
   # маршрута WireGuard останется без пиров до ручного запуска сервиса.
   systemd.services.wireguard-wgp2p-peer-laptop-intel = {
+    wants = [ "wgp2p-uplink.service" ];
+    after = [ "wgp2p-uplink.service" ];
+  };
+  systemd.services.wireguard-wgp2p-peer-windows-1 = {
     wants = [ "wgp2p-uplink.service" ];
     after = [ "wgp2p-uplink.service" ];
   };
