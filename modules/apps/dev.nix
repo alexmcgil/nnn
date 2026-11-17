@@ -28,6 +28,7 @@
 
     # Редакторы
     zed-editor
+    android-studio
     # jetbrains.idea
 
     # Language servers
