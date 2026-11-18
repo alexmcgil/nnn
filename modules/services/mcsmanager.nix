@@ -94,7 +94,7 @@ let
     }
     {
       id = "9b20b3878fa54a14b9a7c1f0c4710007";
-      name = "Star Technology Theta 1 HF 3";
+      name = "Star Technology Theta 2 HF 4";
       path = "/home/alexmcgil/servers/star-technology";
       command = "java17 @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.4.20/unix_args.txt nogui";
     }
