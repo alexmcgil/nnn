@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   users.mutableUsers = false;
@@ -37,6 +37,9 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "hm-backup";
-  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+    hostName = config.networking.hostName;
+  };
   home-manager.users.alexmcgil = import ./alexmcgil-home.nix;
 }

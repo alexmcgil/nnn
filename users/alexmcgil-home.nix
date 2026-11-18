@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, hostName, ... }:
 
 {
   home.username = "alexmcgil";
@@ -111,6 +111,7 @@
   # ---- Noctalia ----
   imports = [
     ./desktop.nix
+    ./niri/${hostName}.nix
     inputs.xmcl.homeModules.xmcl
     ./fish.nix
   ];

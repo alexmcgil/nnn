@@ -6,6 +6,7 @@ in
   imports = [
     inputs.niri.homeModules.config
     ./desktop.nix
+    ./niri/laptop-intel.nix
     ./rebuild-commands.nix
   ];
 
@@ -29,10 +30,6 @@ in
   home.activation.validateNoctalia = lib.hm.dag.entryBefore [ "writeBoundary" ] ''
     /usr/bin/noctalia config validate ${config.xdg.configFile."noctalia/config.toml".source}
   '';
-
-  # Отключаем natural-scroll, включённый по умолчанию модулем niri:
-  # на этой машине нужна прокрутка в противоположном направлении.
-  programs.niri.settings.input.touchpad.natural-scroll = false;
 
   home.packages = with pkgs; [
     brightnessctl
