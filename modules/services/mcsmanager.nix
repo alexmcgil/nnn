@@ -88,7 +88,7 @@ let
     }
     {
       id = "9b20b3878fa54a14b9a7c1f0c4710006";
-      name = "GT New Horizons 2.8.4";
+      name = "GT New Horizons 2.9.0";
       path = "/home/alexmcgil/servers/gtnh";
       command = "java21 -Xms8G -Xmx16G -Dfml.readTimeout=180 @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui";
     }
