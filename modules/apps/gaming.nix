@@ -18,6 +18,7 @@
       pkgs-stable.lutris)
     bottles
     heroic             # Heroic Games Launcher (Epic/GOG/Amazon)
+    chiaki-ng
     prismlauncher      # Minecraft
     mcpelauncher-ui-qt
     temurin-bin-21   # для Minecraft 1.21+ нужна Java 21
