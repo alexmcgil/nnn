@@ -25,6 +25,7 @@
     warp-terminal
     lens
     kubectl
+    lazygit
 
     # Редакторы
     zed-editor
