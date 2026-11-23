@@ -357,11 +357,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795447147,
-        "narHash": "sha256-s+3KXy6qbct0uNceB3bF/6SG/XUJ0XMNi+xjq/TmOsw=",
+        "lastModified": 1795447903,
+        "narHash": "sha256-/Elb9tFlLeLOMTNlq/qdfZRUi3IJ9ymONMznoo+Dwa0=",
         "owner": "alexmcgil",
         "repo": "z-layout-switcher",
-        "rev": "b5b76f74b9a648759092f9722e6b8f7a2de9dcc7",
+        "rev": "fbeafb046e265c85a8aee115adaff7f8bbab1468",
         "type": "github"
       },
       "original": {
