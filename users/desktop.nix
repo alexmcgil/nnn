@@ -2,7 +2,13 @@
 
 {
   # Общий рабочий стол для NixOS и standalone Home Manager на CachyOS.
-  imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+  imports = [
+    inputs.plasma-manager.homeModules.plasma-manager
+    inputs.z-layout-switcher.homeManagerModules.default
+  ];
+
+  # Super+CapsLock исправляет выделенный текст по уже заданным раскладкам niri.
+  programs.z-layout-switcher.enable = true;
 
   # ---- KDE/Qt темизация ----
   # plasma-manager управляет ТОЛЬКО иконками и widget-style.
