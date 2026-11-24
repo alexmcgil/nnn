@@ -114,6 +114,7 @@
     ./niri/${hostName}.nix
     inputs.xmcl.homeModules.xmcl
     ./fish.nix
+    ./basic-memory.nix
   ];
 
   programs.xmcl = {
