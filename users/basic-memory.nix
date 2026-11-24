@@ -3,9 +3,16 @@
 let
   memoryDir = "${config.home.homeDirectory}/Documents/Personal/agent-memory";
   uvx = "${pkgs.uv}/bin/uvx";
+  handoffGuidance = ''
+    В начале новой сессии проверь в Basic Memory (`agent-memory/handoffs`) активные handoff-заметки и используй подходящую по задаче. Перед продолжением сверь записанное с текущим состоянием репозиториев. Если останавливаешь незавершённую работу, обнови одну заметку: цель, репозитории, сделанное, проверки и следующий шаг. Не сохраняй пересказ чата.
+  '';
 in
 {
   home.packages = with pkgs; [ uv codex opencode ];
+
+  home.file.".codex/AGENTS.md".text = handoffGuidance;
+  home.file.".codex-personal/AGENTS.md".text = handoffGuidance;
+  xdg.configFile."opencode/AGENTS.md".text = handoffGuidance;
 
   # Конфиги агентов остаются изменяемыми: сохраняем остальные MCP и настройки.
   home.activation.basicMemory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
